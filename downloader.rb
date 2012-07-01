@@ -2,6 +2,8 @@ require_relative 'show'
 require 'date'
 require 'json'
 require 'net/http'
+require 'transmission-client'
+require 'eventmachine'
 
 class Downloader
   SEARCH_ENGINE_URLS = ["http://ca.isohunt.com/js/json.php?ihq="]
@@ -43,5 +45,13 @@ if __FILE__ == $0
   d = Downloader.new()
   d.prepare_data()
   p d.shows
-  p d.get_search_results()
+  t = d.get_search_results()
+  puts t
+  
+  trans = Transmission::Client.new('media.lan', '9091')
+  EM.run do
+    trans.add_torrent({'filename' => t, 'download-dir' => '/data/media/downloads' }) do
+      puts "cool"
+    end
+  end
 end
