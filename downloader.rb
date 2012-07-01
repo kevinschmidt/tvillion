@@ -1,7 +1,11 @@
 require_relative 'show'
 require 'date'
+require 'json'
+require 'net/http'
 
 class Downloader
+  SEARCH_ENGINE_URLS = ["http://ca.isohunt.com/js/json.php?ihq="]
+  
   attr_reader :shows
   
   def initialize()
@@ -13,8 +17,20 @@ class Downloader
     s.season = 5
     s.episode = 4
     s.runtime = 60
+    s.hd = true
     s.date = DateTime.parse("2012-07-01 21:00:00 EST")
     @shows.push(s)
+  end
+  
+  def get_search_results()
+    SEARCH_ENGINE_URLS.each() do |url|
+      shows.each() do |show|
+        p  URI.parse(URI.escape(url + show.generate_search_string()))
+        resp = Net::HTTP.get_response(URI.parse(URI.escape(url + show.generate_search_string())))
+        data = resp.body
+        puts data
+      end
+    end
   end
 end
 
@@ -22,4 +38,5 @@ if __FILE__ == $0
   d = Downloader.new()
   d.prepare_data()
   p d.shows
+  d.get_search_results()
 end
