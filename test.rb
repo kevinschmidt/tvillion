@@ -6,5 +6,5 @@ end
 
 if __FILE__ == $0
   t = Test.new()
-  t.test
+  t.test()
 end
