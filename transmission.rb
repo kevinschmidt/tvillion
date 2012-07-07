@@ -21,9 +21,9 @@ module Transmission
       payload = build_request("torrent-add", arguments)
       puts payload
       
-      request = Net::HTTP::Post.new(@uri.request_uri, initheader = {'Content-Type' =>'application/json'})
+      request = Net::HTTP::Post.new(@uri.request_uri, {'Content-Type' =>'application/json'})
       request.body = payload
-      result = Net::HTTP.new(@uri.hostname, @uri.port).start do |http|
+      Net::HTTP.new(@uri.hostname, @uri.port).start do |http|
         response = http.request(request)
         if response.is_a?(Net::HTTPConflict)
           session_id = response['x-transmission-session-id']
@@ -35,13 +35,13 @@ module Transmission
         if response.is_a?(Net::HTTPSuccess)
           puts response.body
         else
-          raise "did not get 200 on first request"
+          raise "did not get 200 on second request"
         end
       end
     end
 
     private
-    def build_request(method, arguments = {})
+      def build_request(method, arguments = {})
         if arguments.empty?
           return {'method' => method}.to_json
         else
