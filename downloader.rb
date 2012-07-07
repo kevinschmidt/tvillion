@@ -1,12 +1,14 @@
-require_relative 'show'
 require 'date'
 require 'json'
 require 'net/http'
 require 'eventmachine'
-require_relative 'transmission'
+
+require 'tvillion/show'
+require 'tvillion/transmission'
+require 'tvillion/torrentsearch'
 
 class Downloader
-  SEARCH_ENGINE_URLS = ["http://ca.isohunt.com/js/json.php?ihq="]
+  include TorrentSearch
   
   attr_reader :shows
   
@@ -23,29 +25,13 @@ class Downloader
     s.date = DateTime.parse("2012-07-01 21:00:00 EST")
     @shows.push(s)
   end
-  
-  def get_search_results()
-    SEARCH_ENGINE_URLS.each() do |url|
-      shows.each() do |show|
-        resp = Net::HTTP.get_response(URI.parse(URI.escape(url + show.generate_search_string())))
-        data = resp.body
-        result = JSON.parse(data)
-        if result.has_key? 'items'
-          items = result['items']['list']
-          puts JSON.pretty_generate(items[0])
-          return items[0]['enclosure_url']
-        end
-        return nil
-      end
-    end
-  end
 end
 
 if __FILE__ == $0
   d = Downloader.new()
   d.prepare_data()
   p d.shows
-  t = d.get_search_results()
+  t = d.get_search_results(d.shows[0].generate_search_string())
   puts t
   
   trans = Transmission::Client.new('media.lan', '9091')
