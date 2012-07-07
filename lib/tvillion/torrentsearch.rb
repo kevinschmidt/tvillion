@@ -6,16 +6,14 @@ module TorrentSearch
   
   def get_search_results(search_string)
     SEARCH_ENGINE_URLS.each() do |url|
-      shows.each() do |show|
-        resp = Net::HTTP.get_response(URI.parse(URI.escape(url + search_string)))
-        data = resp.body
-        result = JSON.parse(data)
-        if result.has_key? 'items'
-          items = result['items']['list']
-          return items[0]['enclosure_url']
-        end
-        return nil
+      resp = Net::HTTP.get_response(URI.parse(URI.escape(url + search_string)))
+      data = resp.body
+      result = JSON.parse(data)
+      if result.has_key? 'items'
+        items = result['items']['list']
+        return items[0]['enclosure_url']
       end
+      return nil
     end
   end
 end

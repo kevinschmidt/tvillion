@@ -1,6 +1,6 @@
 class Show
   attr_reader :name
-  attr_accessor :season, :episode, :runtime, :hd, :date
+  attr_accessor :season, :episode, :runtime, :hd, :image_url, :next_show_date, :last_updated
   
   def initialize(name)
     @name = name

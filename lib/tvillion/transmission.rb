@@ -10,7 +10,6 @@ module Transmission
       else
         @header = {}
       end
-      puts @uri
     end
     
     def add_torrent(url, download_dir = nil)
