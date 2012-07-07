@@ -14,7 +14,7 @@ module TvInfo
   end
   
   def get_show_id(title)
-    resp = Net::HTTP.get_response(URI.parse(URI.escape(SEARCH_URL + title)))
+    resp = get_response(URI.parse(URI.escape(SEARCH_URL + title)))
     doc = REXML::Document.new(resp.body)
     
     ids = []
@@ -38,7 +38,7 @@ module TvInfo
   end
   
   def get_show_info(id)
-    resp = Net::HTTP.get_response(URI.parse(URI.escape(INFO_URL + id)))
+    resp = get_response(URI.parse(URI.escape(INFO_URL + id)))
     xml_elements = REXML::Document.new(resp.body).root.elements
     result = Show.new(xml_elements["name"].text)
     result.image_url = xml_elements["image"].text
@@ -48,8 +48,10 @@ module TvInfo
     result.runtime = xml_elements["runtime"].text.to_i
     result.hd = true
     
-    result.season = xml_elements["Episodelist"].elements.to_a.last.attributes['no'].to_i
-    xml_elements["Episodelist"].elements.to_a.last.elements.each do |episode|
+    seasons_xml = xml_elements["Episodelist"].elements.to_a("//Season")
+    print seasons_xml
+    result.season = seasons_xml.last.attributes['no'].to_i
+    seasons_xml.last.elements["episode"].each do |episode|
       next_show_date = DateTime.parse(episode.elements['airdate'].text + " " + airtime + " " + timezone) + (result.runtime.to_f / 24 / 60)
       if next_show_date > DateTime.now()
         result.next_show_date = next_show_date
@@ -60,5 +62,13 @@ module TvInfo
     
     result.last_updated = DateTime.now()
     return result
+  end
+  
+  def get_response(uri)
+    http_request = Net::HTTP.new(uri.host, uri.port)
+    http_request.read_timeout = 500
+    http_request.start do |http|
+      return http.request_get(uri.request_uri)
+    end
   end
 end

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<Show>
+<name>Futurama</name>
+<totalseasons>7</totalseasons>
+<showid>3628</showid>
+<showlink>http://tvrage.com/Futurama</showlink>
+<started>Mar/28/1999</started>
+<ended></ended>
+<image>http://images.tvrage.com/shows/4/3628.jpg</image>
+<origin_country>US</origin_country>
+<status>Returning Series</status>
+<classification>Animation</classification>
+<genres><genre>Adult Cartoons</genre><genre>Comedy</genre><genre>Sci-Fi</genre></genres>
+<runtime>30</runtime>
+<network country="US">Comedy Central</network>
+<airtime>22:00</airtime>
+<airday>Wednesday</airday>
+<timezone>GMT-5 +DST</timezone>
+<akas><aka country="LT">Futurama</aka></akas>
+<Episodelist>
+
+<Season no="1">
+<episode><epnum>1</epnum><seasonnum>01</seasonnum><prodnum>1ACV01</prodnum><airdate>1999-03-28</airdate><link>http://www.tvrage.com/Futurama/episodes/65764</link><title>Space Pilot 3000</title><screencap>http://images.tvrage.com/screencaps/19/3628/65764.png</screencap></episode>
+<episode><epnum>2</epnum><seasonnum>02</seasonnum><prodnum>1ACV02</prodnum><airdate>1999-04-04</airdate><link>http://www.tvrage.com/Futurama/episodes/65765</link><title>The Series Has Landed</title><screencap>http://images.tvrage.com/screencaps/19/3628/65765.png</screencap></episode>
+<episode><epnum>3</epnum><seasonnum>03</seasonnum><prodnum>1ACV03</prodnum><airdate>1999-04-06</airdate><link>http://www.tvrage.com/Futurama/episodes/65766</link><title>I, Roommate</title><screencap>http://images.tvrage.com/screencaps/19/3628/65766.png</screencap></episode>
+<episode><epnum>4</epnum><seasonnum>04</seasonnum><prodnum>1ACV04</prodnum><airdate>1999-04-13</airdate><link>http://www.tvrage.com/Futurama/episodes/65767</link><title>Love's Labors Lost in Space</title><screencap>http://images.tvrage.com/screencaps/19/3628/65767.png</screencap></episode>
+<episode><epnum>5</epnum><seasonnum>05</seasonnum><prodnum>1ACV05</prodnum><airdate>1999-04-20</airdate><link>http://www.tvrage.com/Futurama/episodes/65768</link><title>Fear of a Bot Planet</title><screencap>http://images.tvrage.com/screencaps/19/3628/65768.png</screencap></episode>
+<episode><epnum>6</epnum><seasonnum>06</seasonnum><prodnum>1ACV06</prodnum><airdate>1999-04-27</airdate><link>http://www.tvrage.com/Futurama/episodes/65769</link><title>A Fishful of Dollars</title><screencap>http://images.tvrage.com/screencaps/19/3628/65769.png</screencap></episode>
+<episode><epnum>7</epnum><seasonnum>07</seasonnum><prodnum>1ACV07</prodnum><airdate>1999-05-04</airdate><link>http://www.tvrage.com/Futurama/episodes/65770</link><title>My Three Suns</title><screencap>http://images.tvrage.com/screencaps/19/3628/65770.png</screencap></episode>
+<episode><epnum>8</epnum><seasonnum>08</seasonnum><prodnum>1ACV08</prodnum><airdate>1999-05-11</airdate><link>http://www.tvrage.com/Futurama/episodes/65771</link><title>A Big Piece of Garbage</title><screencap>http://images.tvrage.com/screencaps/19/3628/65771.png</screencap></episode>
+<episode><epnum>9</epnum><seasonnum>09</seasonnum><prodnum>1ACV09</prodnum><airdate>1999-05-18</airdate><link>http://www.tvrage.com/Futurama/episodes/65772</link><title>Hell Is Other Robots</title><screencap>http://images.tvrage.com/screencaps/19/3628/65772.png</screencap></episode>
+</Season>
+
+<Season no="2">
+<episode><epnum>10</epnum><seasonnum>01</seasonnum><prodnum>1ACV10</prodnum><airdate>1999-09-26</airdate><link>http://www.tvrage.com/Futurama/episodes/65773</link><title>A Flight to Remember</title><screencap>http://images.tvrage.com/screencaps/19/3628/65773.png</screencap></episode>
+<episode><epnum>11</epnum><seasonnum>02</seasonnum><prodnum>1ACV11</prodnum><airdate>1999-10-03</airdate><link>http://www.tvrage.com/Futurama/episodes/65774</link><title>Mars University</title><screencap>http://images.tvrage.com/screencaps/19/3628/65774.png</screencap></episode>
+<episode><epnum>12</epnum><seasonnum>03</seasonnum><prodnum>1ACV12</prodnum><airdate>1999-11-07</airdate><link>http://www.tvrage.com/Futurama/episodes/65775</link><title>When Aliens Attack</title><screencap>http://images.tvrage.com/screencaps/19/3628/65775.png</screencap></episode>
+<episode><epnum>13</epnum><seasonnum>04</seasonnum><prodnum>1ACV13</prodnum><airdate>1999-11-14</airdate><link>http://www.tvrage.com/Futurama/episodes/65776</link><title>Fry &amp; the Slurm Factory</title><screencap>http://images.tvrage.com/screencaps/19/3628/65776.png</screencap></episode>
+<episode><epnum>14</epnum><seasonnum>05</seasonnum><prodnum>2ACV01</prodnum><airdate>1999-11-21</airdate><link>http://www.tvrage.com/Futurama/episodes/65777</link><title>I Second That Emotion</title><screencap>http://images.tvrage.com/screencaps/19/3628/65777.png</screencap></episode>
+<episode><epnum>15</epnum><seasonnum>06</seasonnum><prodnum>2ACV02</prodnum><airdate>1999-11-28</airdate><link>http://www.tvrage.com/Futurama/episodes/65778</link><title>Brannigan Begin Again</title><screencap>http://images.tvrage.com/screencaps/19/3628/65778.png</screencap></episode>
+<episode><epnum>16</epnum><seasonnum>07</seasonnum><prodnum>2ACV03</prodnum><airdate>1999-12-12</airdate><link>http://www.tvrage.com/Futurama/episodes/65779</link><title>A Head in the Polls</title><screencap>http://images.tvrage.com/screencaps/19/3628/65779.png</screencap></episode>
+<episode><epnum>17</epnum><seasonnum>08</seasonnum><prodnum>2ACV04</prodnum><airdate>1999-12-19</airdate><link>http://www.tvrage.com/Futurama/episodes/65780</link><title>Xmas Story</title><screencap>http://images.tvrage.com/screencaps/19/3628/65780.png</screencap></episode>
+<episode><epnum>18</epnum><seasonnum>09</seasonnum><prodnum>2ACV05</prodnum><airdate>2000-02-06</airdate><link>http://www.tvrage.com/Futurama/episodes/65781</link><title>Why Must I Be a Crustacean in Love</title><screencap>http://images.tvrage.com/screencaps/19/3628/65781.png</screencap></episode>
+<episode><epnum>20</epnum><seasonnum>10</seasonnum><prodnum>2ACV07</prodnum><airdate>2000-02-13</airdate><link>http://www.tvrage.com/Futurama/episodes/65782</link><title>Put Your Head on My Shoulder</title><screencap>http://images.tvrage.com/screencaps/19/3628/65782.png</screencap></episode>
+<episode><epnum>20</epnum><seasonnum>11</seasonnum><prodnum>2ACV06</prodnum><airdate>2000-02-20</airdate><link>http://www.tvrage.com/Futurama/episodes/65783</link><title>Lesser of Two Evils</title><screencap>http://images.tvrage.com/screencaps/19/3628/65783.png</screencap></episode>
+<episode><epnum>21</epnum><seasonnum>12</seasonnum><prodnum>2ACV08</prodnum><airdate>2000-02-27</airdate><link>http://www.tvrage.com/Futurama/episodes/65784</link><title>Raging Bender</title><screencap>http://images.tvrage.com/screencaps/19/3628/65784.png</screencap></episode>
+<episode><epnum>22</epnum><seasonnum>13</seasonnum><prodnum>2ACV09</prodnum><airdate>2000-03-19</airdate><link>http://www.tvrage.com/Futurama/episodes/65785</link><title>A Bicyclops Built for Two</title><screencap>http://images.tvrage.com/screencaps/19/3628/65785.png</screencap></episode>
+<episode><epnum>23</epnum><seasonnum>14</seasonnum><prodnum>2ACV11</prodnum><airdate>2000-04-02</airdate><link>http://www.tvrage.com/Futurama/episodes/65786</link><title>How Hermes Requisitioned His Groove Back</title><screencap>http://images.tvrage.com/screencaps/19/3628/65786.png</screencap></episode>
+<episode><epnum>24</epnum><seasonnum>15</seasonnum><prodnum>2ACV10</prodnum><airdate>2000-04-09</airdate><link>http://www.tvrage.com/Futurama/episodes/65787</link><title>A Clone of My Own</title><screencap>http://images.tvrage.com/screencaps/19/3628/65787.png</screencap></episode>
+<episode><epnum>25</epnum><seasonnum>16</seasonnum><prodnum>2ACV12</prodnum><airdate>2000-04-16</airdate><link>http://www.tvrage.com/Futurama/episodes/65788</link><title>The Deep South</title><screencap>http://images.tvrage.com/screencaps/19/3628/65788.png</screencap></episode>
+<episode><epnum>26</epnum><seasonnum>17</seasonnum><prodnum>2ACV13</prodnum><airdate>2000-04-30</airdate><link>http://www.tvrage.com/Futurama/episodes/65789</link><title>Bender Gets Made</title><screencap>http://images.tvrage.com/screencaps/19/3628/65789.png</screencap></episode>
+<episode><epnum>27</epnum><seasonnum>18</seasonnum><prodnum>2ACV15</prodnum><airdate>2000-05-07</airdate><link>http://www.tvrage.com/Futurama/episodes/65790</link><title>The Problem with Popplers</title><screencap>http://images.tvrage.com/screencaps/19/3628/65790.png</screencap></episode>
+<episode><epnum>28</epnum><seasonnum>19</seasonnum><prodnum>2ACV14</prodnum><airdate>2000-05-14</airdate><link>http://www.tvrage.com/Futurama/episodes/65791</link><title>Mother's Day</title><screencap>http://images.tvrage.com/screencaps/19/3628/65791.png</screencap></episode>
+<episode><epnum>29</epnum><seasonnum>20</seasonnum><prodnum>2ACV16</prodnum><airdate>2000-05-21</airdate><link>http://www.tvrage.com/Futurama/episodes/65792</link><title>Anthology of Interest (1)</title><screencap>http://images.tvrage.com/screencaps/19/3628/65792.png</screencap></episode>
+</Season>
+
+<Season no="3">
+<episode><epnum>30</epnum><seasonnum>01</seasonnum><prodnum>2ACV18</prodnum><airdate>2000-11-05</airdate><link>http://www.tvrage.com/Futurama/episodes/65793</link><title>The Honking</title><screencap>http://images.tvrage.com/screencaps/19/3628/65793.png</screencap></episode>
+<episode><epnum>31</epnum><seasonnum>02</seasonnum><prodnum>2ACV17</prodnum><airdate>2000-11-26</airdate><link>http://www.tvrage.com/Futurama/episodes/65794</link><title>War Is the H-Word</title><screencap>http://images.tvrage.com/screencaps/19/3628/65794.png</screencap></episode>
+<episode><epnum>32</epnum><seasonnum>03</seasonnum><prodnum>2ACV19</prodnum><airdate>2000-12-03</airdate><link>http://www.tvrage.com/Futurama/episodes/65795</link><title>The Cryonic Woman</title><screencap>http://images.tvrage.com/screencaps/19/3628/65795.png</screencap></episode>
+<episode><epnum>33</epnum><seasonnum>04</seasonnum><prodnum>3ACV02</prodnum><airdate>2001-01-21</airdate><link>http://www.tvrage.com/Futurama/episodes/65796</link><title>Parasites Lost</title><screencap>http://images.tvrage.com/screencaps/19/3628/65796.png</screencap></episode>
+<episode><epnum>34</epnum><seasonnum>05</seasonnum><prodnum>3ACV01</prodnum><airdate>2001-02-04</airdate><link>http://www.tvrage.com/Futurama/episodes/65797</link><title>Amazon Women in the Mood</title><screencap>http://images.tvrage.com/screencaps/19/3628/65797.png</screencap></episode>
+<episode><epnum>35</epnum><seasonnum>06</seasonnum><prodnum>3ACV06</prodnum><airdate>2001-02-11</airdate><link>http://www.tvrage.com/Futurama/episodes/65798</link><title>Bendless Love</title><screencap>http://images.tvrage.com/screencaps/19/3628/65798.png</screencap></episode>
+<episode><epnum>36</epnum><seasonnum>07</seasonnum><prodnum>3ACV07</prodnum><airdate>2001-02-18</airdate><link>http://www.tvrage.com/Futurama/episodes/65799</link><title>The Day the Earth Stood Stupid</title><screencap>http://images.tvrage.com/screencaps/19/3628/65799.png</screencap></episode>
+<episode><epnum>37</epnum><seasonnum>08</seasonnum><prodnum>3ACV08</prodnum><airdate>2001-02-25</airdate><link>http://www.tvrage.com/Futurama/episodes/65800</link><title>That's Lobstertainment!</title><screencap>http://images.tvrage.com/screencaps/19/3628/65800.png</screencap></episode>
+<episode><epnum>38</epnum><seasonnum>09</seasonnum><prodnum>3ACV05</prodnum><airdate>2001-03-04</airdate><link>http://www.tvrage.com/Futurama/episodes/65801</link><title>The Birdbot of Ice-Catraz</title><screencap>http://images.tvrage.com/screencaps/19/3628/65801.png</screencap></episode>
+<episode><epnum>39</epnum><seasonnum>10</seasonnum><prodnum>3ACV04</prodnum><airdate>2001-03-11</airdate><link>http://www.tvrage.com/Futurama/episodes/65802</link><title>Luck of the Fryrish</title><screencap>http://images.tvrage.com/screencaps/19/3628/65802.png</screencap></episode>
+<episode><epnum>40</epnum><seasonnum>11</seasonnum><prodnum>3ACV09</prodnum><airdate>2001-04-01</airdate><link>http://www.tvrage.com/Futurama/episodes/65803</link><title>The Cyber House Rules</title><screencap>http://images.tvrage.com/screencaps/19/3628/65803.png</screencap></episode>
+<episode><epnum>41</epnum><seasonnum>12</seasonnum><prodnum>3ACV11</prodnum><airdate>2001-04-08</airdate><link>http://www.tvrage.com/Futurama/episodes/65804</link><title>Insane in the Mainframe</title><screencap>http://images.tvrage.com/screencaps/19/3628/65804.jpg</screencap></episode>
+<episode><epnum>42</epnum><seasonnum>13</seasonnum><prodnum>3ACV13</prodnum><airdate>2001-04-22</airdate><link>http://www.tvrage.com/Futurama/episodes/65805</link><title>Bendin' in the Wind</title><screencap>http://images.tvrage.com/screencaps/19/3628/65805.jpg</screencap></episode>
+<episode><epnum>43</epnum><seasonnum>14</seasonnum><prodnum>3ACV14</prodnum><airdate>2001-05-06</airdate><link>http://www.tvrage.com/Futurama/episodes/65806</link><title>Time Keeps on Slipping</title><screencap>http://images.tvrage.com/screencaps/19/3628/65806.jpg</screencap></episode>
+<episode><epnum>44</epnum><seasonnum>15</seasonnum><prodnum>3ACV15</prodnum><airdate>2001-05-13</airdate><link>http://www.tvrage.com/Futurama/episodes/65807</link><title>I Dated a Robot</title><screencap>http://images.tvrage.com/screencaps/19/3628/65807.jpg</screencap></episode>
+</Season>
+
+<Season no="4">
+<episode><epnum>45</epnum><seasonnum>01</seasonnum><prodnum>3ACV19</prodnum><airdate>2001-12-09</airdate><link>http://www.tvrage.com/Futurama/episodes/65808</link><title>Roswell That Ends Well</title><screencap>http://images.tvrage.com/screencaps/19/3628/65808.jpg</screencap></episode>
+<episode><epnum>46</epnum><seasonnum>02</seasonnum><prodnum>3ACV03</prodnum><airdate>2001-12-23</airdate><link>http://www.tvrage.com/Futurama/episodes/65809</link><title>A Tale of Two Santas</title><screencap>http://images.tvrage.com/screencaps/19/3628/65809.jpg</screencap></episode>
+<episode><epnum>47</epnum><seasonnum>03</seasonnum><prodnum>3ACV18</prodnum><airdate>2002-01-06</airdate><link>http://www.tvrage.com/Futurama/episodes/65810</link><title>Anthology of Interest (2)</title><screencap>http://images.tvrage.com/screencaps/19/3628/65810.jpg</screencap></episode>
+<episode><epnum>48</epnum><seasonnum>04</seasonnum><prodnum>4ACV03</prodnum><airdate>2002-02-10</airdate><link>http://www.tvrage.com/Futurama/episodes/65811</link><title>Love and Rocket</title><screencap>http://images.tvrage.com/screencaps/19/3628/65811.jpg</screencap></episode>
+<episode><epnum>49</epnum><seasonnum>05</seasonnum><prodnum>4ACV02</prodnum><airdate>2002-02-17</airdate><link>http://www.tvrage.com/Futurama/episodes/65812</link><title>Leela's Homeworld</title><screencap>http://images.tvrage.com/screencaps/19/3628/65812.jpg</screencap></episode>
+<episode><epnum>50</epnum><seasonnum>06</seasonnum><prodnum>3ACV10</prodnum><airdate>2002-03-03</airdate><link>http://www.tvrage.com/Futurama/episodes/65813</link><title>Where the Buggalo Roam</title><screencap>http://images.tvrage.com/screencaps/19/3628/65813.jpg</screencap></episode>
+<episode><epnum>51</epnum><seasonnum>07</seasonnum><prodnum>3ACV17</prodnum><airdate>2002-03-10</airdate><link>http://www.tvrage.com/Futurama/episodes/65814</link><title>A Pharaoh to Remember</title><screencap>http://images.tvrage.com/screencaps/19/3628/65814.jpg</screencap></episode>
+<episode><epnum>52</epnum><seasonnum>08</seasonnum><prodnum>3ACV20</prodnum><airdate>2002-03-17</airdate><link>http://www.tvrage.com/Futurama/episodes/65815</link><title>Godfellas</title><screencap>http://images.tvrage.com/screencaps/19/3628/65815.jpg</screencap></episode>
+<episode><epnum>53</epnum><seasonnum>09</seasonnum><prodnum>3ACV21</prodnum><airdate>2002-03-31</airdate><link>http://www.tvrage.com/Futurama/episodes/65816</link><title>Futurestock</title><screencap>http://images.tvrage.com/screencaps/19/3628/65816.jpg</screencap></episode>
+<episode><epnum>54</epnum><seasonnum>10</seasonnum><prodnum>3ACV16</prodnum><airdate>2002-04-07</airdate><link>http://www.tvrage.com/Futurama/episodes/65817</link><title>A Leela of Her Own</title><screencap>http://images.tvrage.com/screencaps/19/3628/65817.jpg</screencap></episode>
+<episode><epnum>55</epnum><seasonnum>11</seasonnum><prodnum>3ACV22</prodnum><airdate>2002-04-14</airdate><link>http://www.tvrage.com/Futurama/episodes/65818</link><title>30% Iron Chef</title><screencap>http://images.tvrage.com/screencaps/19/3628/65818.jpg</screencap></episode>
+<episode><epnum>56</epnum><seasonnum>12</seasonnum><prodnum>4ACV11</prodnum><airdate>2002-04-21</airdate><link>http://www.tvrage.com/Futurama/episodes/65819</link><title>Where No Fan Has Gone Before</title><screencap>http://images.tvrage.com/screencaps/19/3628/65819.jpg</screencap></episode>
+</Season>
+
+<Season no="5">
+<episode><epnum>57</epnum><seasonnum>01</seasonnum><prodnum>4ACV08</prodnum><airdate>2002-11-10</airdate><link>http://www.tvrage.com/Futurama/episodes/65820</link><title>Crimes of the Hot</title><screencap>http://images.tvrage.com/screencaps/19/3628/65820.png</screencap></episode>
+<episode><epnum>58</epnum><seasonnum>02</seasonnum><prodnum>4ACV07</prodnum><airdate>2002-11-17</airdate><link>http://www.tvrage.com/Futurama/episodes/65821</link><title>Jurassic Bark</title><screencap>http://images.tvrage.com/screencaps/19/3628/65821.jpg</screencap></episode>
+<episode><epnum>59</epnum><seasonnum>03</seasonnum><prodnum>3ACV12</prodnum><airdate>2002-12-08</airdate><link>http://www.tvrage.com/Futurama/episodes/65822</link><title>The Route of All Evil</title><screencap>http://images.tvrage.com/screencaps/19/3628/65822.jpg</screencap></episode>
+<episode><epnum>60</epnum><seasonnum>04</seasonnum><prodnum>4ACV05</prodnum><airdate>2002-12-22</airdate><link>http://www.tvrage.com/Futurama/episodes/65823</link><title>A Taste of Freedom</title><screencap>http://images.tvrage.com/screencaps/19/3628/65823.jpg</screencap></episode>
+<episode><epnum>61</epnum><seasonnum>05</seasonnum><prodnum>4ACV01</prodnum><airdate>2003-01-12</airdate><link>http://www.tvrage.com/Futurama/episodes/65824</link><title>Kif Gets Knocked Up a Notch</title><screencap>http://images.tvrage.com/screencaps/19/3628/65824.jpg</screencap></episode>
+<episode><epnum>62</epnum><seasonnum>06</seasonnum><prodnum>4ACV04</prodnum><airdate>2003-03-02</airdate><link>http://www.tvrage.com/Futurama/episodes/65825</link><title>Less Than Hero</title><screencap>http://images.tvrage.com/screencaps/19/3628/65825.jpg</screencap></episode>
+<episode><epnum>63</epnum><seasonnum>07</seasonnum><prodnum>4ACV09</prodnum><airdate>2003-03-30</airdate><link>http://www.tvrage.com/Futurama/episodes/65826</link><title>Teenage Mutant Leela's Hurdles</title><screencap>http://images.tvrage.com/screencaps/19/3628/65826.jpg</screencap></episode>
+<episode><epnum>64</epnum><seasonnum>08</seasonnum><prodnum>4ACV10</prodnum><airdate>2003-04-06</airdate><link>http://www.tvrage.com/Futurama/episodes/65827</link><title>The Why of Fry</title><screencap>http://images.tvrage.com/screencaps/19/3628/65827.jpg</screencap></episode>
+<episode><epnum>65</epnum><seasonnum>09</seasonnum><prodnum>4ACV12</prodnum><airdate>2003-06-01</airdate><link>http://www.tvrage.com/Futurama/episodes/65828</link><title>The Sting</title><screencap>http://images.tvrage.com/screencaps/19/3628/65828.jpg</screencap></episode>
+<episode><epnum>66</epnum><seasonnum>10</seasonnum><prodnum>4ACV15</prodnum><airdate>2003-06-08</airdate><link>http://www.tvrage.com/Futurama/episodes/65829</link><title>The Farnsworth Parabox</title><screencap>http://images.tvrage.com/screencaps/19/3628/65829.jpg</screencap></episode>
+<episode><epnum>67</epnum><seasonnum>11</seasonnum><prodnum>4ACV16</prodnum><airdate>2003-06-15</airdate><link>http://www.tvrage.com/Futurama/episodes/65830</link><title>Three Hundred Big Boys</title><screencap>http://images.tvrage.com/screencaps/19/3628/65830.jpg</screencap></episode>
+<episode><epnum>68</epnum><seasonnum>12</seasonnum><prodnum>4ACV17</prodnum><airdate>2003-07-13</airdate><link>http://www.tvrage.com/Futurama/episodes/65831</link><title>Spanish Fry</title><screencap>http://images.tvrage.com/screencaps/19/3628/65831.jpg</screencap></episode>
+<episode><epnum>69</epnum><seasonnum>13</seasonnum><prodnum>4ACV13</prodnum><airdate>2003-07-20</airdate><link>http://www.tvrage.com/Futurama/episodes/65832</link><title>Bend Her</title><screencap>http://images.tvrage.com/screencaps/19/3628/65832.jpg</screencap></episode>
+<episode><epnum>70</epnum><seasonnum>14</seasonnum><prodnum>4ACV14</prodnum><airdate>2003-07-27</airdate><link>http://www.tvrage.com/Futurama/episodes/65833</link><title>Obsoletely Fabulous</title><screencap>http://images.tvrage.com/screencaps/19/3628/65833.jpg</screencap></episode>
+<episode><epnum>71</epnum><seasonnum>15</seasonnum><prodnum>4ACV06</prodnum><airdate>2003-08-03</airdate><link>http://www.tvrage.com/Futurama/episodes/65834</link><title>Bender Should Not Be Allowed on Television</title><screencap>http://images.tvrage.com/screencaps/19/3628/65834.jpg</screencap></episode>
+<episode><epnum>72</epnum><seasonnum>16</seasonnum><prodnum>4ACV18</prodnum><airdate>2003-08-10</airdate><link>http://www.tvrage.com/Futurama/episodes/65835</link><title>The Devil's Hands Are Idle Playthings</title><screencap>http://images.tvrage.com/screencaps/19/3628/65835.jpg</screencap></episode>
+</Season>
+
+<Season no="6">
+<episode><epnum>73</epnum><seasonnum>01</seasonnum><prodnum>6ACV01</prodnum><airdate>2010-06-24</airdate><link>http://www.tvrage.com/Futurama/episodes/1064852884</link><title>Rebirth</title></episode>
+<episode><epnum>74</epnum><seasonnum>02</seasonnum><prodnum>6ACV02</prodnum><airdate>2010-06-24</airdate><link>http://www.tvrage.com/Futurama/episodes/1064925738</link><title>In-A-Gadda-Da-Leela</title></episode>
+<episode><epnum>75</epnum><seasonnum>03</seasonnum><prodnum>6ACV03</prodnum><airdate>2010-07-01</airdate><link>http://www.tvrage.com/Futurama/episodes/1064927076</link><title>Attack of the Killer App</title></episode>
+<episode><epnum>76</epnum><seasonnum>04</seasonnum><prodnum>6ACV04</prodnum><airdate>2010-07-08</airdate><link>http://www.tvrage.com/Futurama/episodes/1064938815</link><title>Proposition Infinity</title></episode>
+<episode><epnum>77</epnum><seasonnum>05</seasonnum><prodnum>6ACV05</prodnum><airdate>2010-07-15</airdate><link>http://www.tvrage.com/Futurama/episodes/1064938816</link><title>The Duh-Vinci Code</title></episode>
+<episode><epnum>78</epnum><seasonnum>06</seasonnum><prodnum>6ACV06</prodnum><airdate>2010-07-22</airdate><link>http://www.tvrage.com/Futurama/episodes/1064943024</link><title>Lethal Inspection</title></episode>
+<episode><epnum>79</epnum><seasonnum>07</seasonnum><prodnum>6ACV07</prodnum><airdate>2010-07-29</airdate><link>http://www.tvrage.com/Futurama/episodes/1064943025</link><title>The Late Philip J. Fry</title></episode>
+<episode><epnum>80</epnum><seasonnum>08</seasonnum><prodnum>6ACV08</prodnum><airdate>2010-08-05</airdate><link>http://www.tvrage.com/Futurama/episodes/1064943026</link><title>That Darn Katz!</title></episode>
+<episode><epnum>81</epnum><seasonnum>09</seasonnum><prodnum>6ACV09</prodnum><airdate>2010-08-12</airdate><link>http://www.tvrage.com/Futurama/episodes/1064943027</link><title>A Clockwork Origin</title></episode>
+<episode><epnum>82</epnum><seasonnum>10</seasonnum><prodnum>6ACV10</prodnum><airdate>2010-08-19</airdate><link>http://www.tvrage.com/Futurama/episodes/1064943028</link><title>The Prisoner of Benda</title></episode>
+<episode><epnum>83</epnum><seasonnum>11</seasonnum><prodnum>6ACV11</prodnum><airdate>2010-08-26</airdate><link>http://www.tvrage.com/Futurama/episodes/1064943029</link><title>Lrrreconcilable Ndndifferences</title></episode>
+<episode><epnum>84</epnum><seasonnum>12</seasonnum><prodnum>6ACV12</prodnum><airdate>2010-09-02</airdate><link>http://www.tvrage.com/Futurama/episodes/1064943030</link><title>The Mutants Are Revolting</title></episode>
+<episode><epnum>85</epnum><seasonnum>13</seasonnum><prodnum>6ACV13</prodnum><airdate>2010-11-21</airdate><link>http://www.tvrage.com/Futurama/episodes/1064977369</link><title>The Futurama Holiday Spectacular</title></episode>
+<episode><epnum>86</epnum><seasonnum>14</seasonnum><prodnum>6ACV20</prodnum><airdate>2011-06-23</airdate><link>http://www.tvrage.com/Futurama/episodes/1065015214</link><title>Neutopia</title></episode>
+<episode><epnum>87</epnum><seasonnum>15</seasonnum><prodnum>6ACV17</prodnum><airdate>2011-06-23</airdate><link>http://www.tvrage.com/Futurama/episodes/1065044712</link><title>Benderama</title><screencap>http://images.tvrage.com/screencaps/19/3628/1065044712.jpg</screencap></episode>
+<episode><epnum>88</epnum><seasonnum>16</seasonnum><prodnum>6ACV19</prodnum><airdate>2011-06-30</airdate><link>http://www.tvrage.com/Futurama/episodes/1065050787</link><title>Ghost in the Machines</title></episode>
+<episode><epnum>89</epnum><seasonnum>17</seasonnum><prodnum>6ACV16</prodnum><airdate>2011-07-07</airdate><link>http://www.tvrage.com/Futurama/episodes/1065050788</link><title>Law and Oracle</title></episode>
+<episode><epnum>90</epnum><seasonnum>18</seasonnum><prodnum>6ACV14</prodnum><airdate>2011-07-14</airdate><link>http://www.tvrage.com/Futurama/episodes/1065050789</link><title>The Silence of the Clamps</title></episode>
+<episode><epnum>91</epnum><seasonnum>19</seasonnum><prodnum>6ACV21</prodnum><airdate>2011-07-21</airdate><link>http://www.tvrage.com/Futurama/episodes/1065050790</link><title>Yo Leela Leela</title></episode>
+<episode><epnum>92</epnum><seasonnum>20</seasonnum><prodnum>6ACV23</prodnum><airdate>2011-07-28</airdate><link>http://www.tvrage.com/Futurama/episodes/1065050791</link><title>All the Presidents' Heads</title></episode>
+<episode><epnum>93</epnum><seasonnum>21</seasonnum><prodnum>6ACV15</prodnum><airdate>2011-08-04</airdate><link>http://www.tvrage.com/Futurama/episodes/1065050792</link><title>Möbius Dick</title></episode>
+<episode><epnum>94</epnum><seasonnum>22</seasonnum><prodnum>6ACV22</prodnum><airdate>2011-08-11</airdate><link>http://www.tvrage.com/Futurama/episodes/1065051133</link><title>Fry am the Egg Man</title></episode>
+<episode><epnum>95</epnum><seasonnum>23</seasonnum><prodnum>6ACV18</prodnum><airdate>2011-08-18</airdate><link>http://www.tvrage.com/Futurama/episodes/1065051132</link><title>The Tip of the Zoidberg</title></episode>
+<episode><epnum>96</epnum><seasonnum>24</seasonnum><prodnum>6ACV24</prodnum><airdate>2011-08-25</airdate><link>http://www.tvrage.com/Futurama/episodes/1065051134</link><title>Cold Warriors</title></episode>
+<episode><epnum>97</epnum><seasonnum>25</seasonnum><prodnum>6ACV25</prodnum><airdate>2011-09-01</airdate><link>http://www.tvrage.com/Futurama/episodes/1065051135</link><title>Overclockwise</title></episode>
+<episode><epnum>98</epnum><seasonnum>26</seasonnum><prodnum>6ACV26</prodnum><airdate>2011-09-08</airdate><link>http://www.tvrage.com/Futurama/episodes/1065051136</link><title>Reincarnation</title></episode>
+</Season>
+
+<Season no="7">
+<episode><epnum>99</epnum><seasonnum>01</seasonnum><prodnum>7ACV01</prodnum><airdate>2012-06-20</airdate><link>http://www.tvrage.com/Futurama/episodes/1065096938</link><title>The Bots and the Bees</title><screencap>http://images.tvrage.com/screencaps/19/3628/1065096938.jpg</screencap></episode>
+<episode><epnum>100</epnum><seasonnum>02</seasonnum><prodnum>7ACV02</prodnum><airdate>2012-06-20</airdate><link>http://www.tvrage.com/Futurama/episodes/1065180277</link><title>A Farewell to Arms</title><screencap>http://images.tvrage.com/screencaps/19/3628/1065180277.jpg</screencap></episode>
+<episode><epnum>101</epnum><seasonnum>03</seasonnum><prodnum>7ACV03</prodnum><airdate>2012-06-27</airdate><link>http://www.tvrage.com/Futurama/episodes/1065180278</link><title>Decision 3012</title><screencap>http://images.tvrage.com/screencaps/19/3628/1065180278.jpg</screencap></episode>
+<episode><epnum>102</epnum><seasonnum>04</seasonnum><prodnum>7ACV04</prodnum><airdate>2012-07-04</airdate><link>http://www.tvrage.com/Futurama/episodes/1065180279</link><title>The Thief of Baghead</title><screencap>http://images.tvrage.com/screencaps/19/3628/1065180279.jpg</screencap></episode>
+<episode><epnum>103</epnum><seasonnum>05</seasonnum><prodnum></prodnum><airdate>2012-07-11</airdate><link>http://www.tvrage.com/Futurama/episodes/1065180280</link><title>Zapp Dingbat</title><screencap>http://images.tvrage.com/screencaps/19/3628/1065180280.jpg</screencap></episode>
+<episode><epnum>104</epnum><seasonnum>06</seasonnum><prodnum></prodnum><airdate>2012-07-18</airdate><link>http://www.tvrage.com/Futurama/episodes/1065180281</link><title>The Butterjunk Effect</title></episode>
+<episode><epnum>105</epnum><seasonnum>07</seasonnum><prodnum></prodnum><airdate>2012-07-25</airdate><link>http://www.tvrage.com/Futurama/episodes/1065180282</link><title>The Six Million Dollar Mon</title></episode>
+<episode><epnum>106</epnum><seasonnum>08</seasonnum><prodnum></prodnum><airdate>2012-08-01</airdate><link>http://www.tvrage.com/Futurama/episodes/1065180283</link><title>Fun on a Bun</title></episode>
+<episode><epnum>107</epnum><seasonnum>09</seasonnum><prodnum></prodnum><airdate>2012-08-08</airdate><link>http://www.tvrage.com/Futurama/episodes/1065180284</link><title>Free Will Hunting</title></episode>
+<episode><epnum>108</epnum><seasonnum>10</seasonnum><prodnum></prodnum><airdate>2012-08-15</airdate><link>http://www.tvrage.com/Futurama/episodes/1065180285</link><title>Near-Death Wish</title></episode>
+<episode><epnum>109</epnum><seasonnum>11</seasonnum><prodnum></prodnum><airdate>2012-08-22</airdate><link>http://www.tvrage.com/Futurama/episodes/1065180286</link><title>31st Century Fox</title></episode>
+<episode><epnum>110</epnum><seasonnum>12</seasonnum><prodnum></prodnum><airdate>2012-08-29</airdate><link>http://www.tvrage.com/Futurama/episodes/1065180287</link><title>Viva Mars Vegas</title></episode>
+<episode><epnum>111</epnum><seasonnum>13</seasonnum><prodnum></prodnum><airdate>2012-09-05</airdate><link>http://www.tvrage.com/Futurama/episodes/1065180288</link><title>Naturama</title></episode>
+</Season>
+
+<Movie>
+<episode><season>5</season><airdate>2007-11-27</airdate><link>http://www.tvrage.com/Futurama/episodes/1064907482</link><title>Bender's Big Score</title><runtime>89</runtime></episode>
+<episode><season>5</season><airdate>2008-10-19</airdate><link>http://www.tvrage.com/Futurama/episodes/1064907483</link><title>The Beast with a Billion Backs</title><runtime>89</runtime></episode>
+<episode><season>5</season><airdate>2008-11-04</airdate><link>http://www.tvrage.com/Futurama/episodes/1064907484</link><title>Bender's Game</title><runtime>87</runtime></episode>
+<episode><season>5</season><airdate>2009-10-30</airdate><link>http://www.tvrage.com/Futurama/episodes/1064907485</link><title>Into the Wild Green Yonder</title><runtime>89</runtime></episode>
+</Movie>
+
+</Episodelist>
+
+</Show>

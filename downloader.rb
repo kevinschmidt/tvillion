@@ -27,5 +27,5 @@ if __FILE__ == $0
   puts t
   
   trans = Transmission::Client.new('media.lan', '9091')
-  trans.add_torrent(t)
+  #trans.add_torrent(t)
 end
