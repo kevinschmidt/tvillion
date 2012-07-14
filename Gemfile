@@ -9,6 +9,7 @@ gem "activesupport", ">= 3.2.6"
 group :development do
   gem "shoulda", ">= 0"
   gem "rspec", ">= 2.8.0"
+  gem "rspec-prof", ">= 0"
   gem "yard", ">= 0.7"  
   gem "rdoc", "~> 3.12"
   gem "bundler", ">= 1.0.0"
