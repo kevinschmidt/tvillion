@@ -2,11 +2,16 @@ require 'tvillion/tvinfo'
 require 'tvillion/show'
 
 describe TVillion::TvInfo do
+  class TvInfoTest
+    include TVillion::TvInfo
+  end
+
   context "parsing" do
     before(:each) do
       @resp = double("resp")
       @http = double("http")
       @http.stub(:request_get).and_return(@resp)
+      @tvinfo = TvInfoTest.new
     end
     
     it "should parse the search xml and get Futurama as a result" do
@@ -14,7 +19,7 @@ describe TVillion::TvInfo do
       @resp.stub(:body).and_return(File.open("spec/data/futurama_show_search.xml", "r").read)
       @resp.should_receive(:body).once
       
-      id = TVillion::TvInfo::get_show_id(@http, "Futurama")
+      id = @tvinfo.get_show_id(@http, "Futurama")
       id.should eq("3628")
     end
     
@@ -23,7 +28,7 @@ describe TVillion::TvInfo do
       @resp.stub(:body).and_return(File.open("spec/data/futurama_show_info.xml", "r").read)
       @resp.should_receive(:body).once
       
-      show = TVillion::TvInfo::get_show_info(@http, "3628")
+      show = @tvinfo.get_show_info(@http, "3628")
       check_show(show)
     end
     
@@ -37,7 +42,7 @@ describe TVillion::TvInfo do
       @resp.stub(:body).and_return(File.open("spec/data/futurama_show_search.xml", "r").read, File.open("spec/data/futurama_show_info.xml", "r").read)
       @resp.should_receive(:body).twice
       
-      show = TVillion::TvInfo::generate_show("Futurama")
+      show = @tvinfo.generate_show("Futurama")
       check_show(show)
     end
     

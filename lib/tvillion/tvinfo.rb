@@ -1,5 +1,4 @@
 require 'date'
-require 'tvillion/show'
 require 'net/http'
 require 'rexml/document'
 require "active_support/core_ext/numeric/time"
@@ -11,8 +10,8 @@ module TVillion
     SEARCH_URL = "http://services.tvrage.com/feeds/search.php?show="
     INFO_URL = "http://services.tvrage.com/feeds/full_show_info.php?sid="
     
-    def self.generate_show(title)
-      http_request = Net::HTTP.new(INFO_HOST, INFO_HOST)
+    def generate_show(title)
+      http_request = Net::HTTP.new(INFO_HOST, INFO_PORT)
       http_request.read_timeout = 500
       http_request.start do |http|
         id = get_show_id(http, title)
@@ -20,7 +19,7 @@ module TVillion
       end
     end
     
-    def self.get_show_id(http, title)
+    def get_show_id(http, title)
       resp = http.request_get(URI.parse(URI.escape(SEARCH_URL + title)).request_uri)
       doc = REXML::Document.new(resp.body)
       
@@ -43,7 +42,7 @@ module TVillion
       raise "show not found: " + title
     end
     
-    def self.get_show_info(http, id)
+    def get_show_info(http, id)
       resp = http.request_get(URI.parse(URI.escape(INFO_URL + id)).request_uri)
       xml_elements = REXML::Document.new(resp.body).root.elements
       result = Show.new(xml_elements["name"].text)
