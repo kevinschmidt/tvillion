@@ -14,8 +14,18 @@ module TVillion
       http_request = Net::HTTP.new(INFO_HOST, INFO_PORT)
       http_request.read_timeout = 500
       http_request.start do |http|
-        id = get_show_id(http, title)
-        return get_show_info(http, id)
+        count = 0
+        begin
+          id = get_show_id(http, title)
+          return get_show_info(http, id)
+        rescue Errno::ECONNRESET
+          count += count
+          if count > 3
+            raise
+          end
+          puts "got connection reset from tvrage.com trying to get tvinfo, request ${count}/3"
+          retry
+        end
       end
     end
     
