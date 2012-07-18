@@ -1,4 +1,4 @@
-TvRail::Application.routes.draw do
+TVillion::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
