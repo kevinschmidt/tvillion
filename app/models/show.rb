@@ -3,10 +3,6 @@ class Show < ActiveRecord::Base
   
   validates :name,  :presence => true
   
-  def to_s()
-    return "Show[name=#{@name},season=#{@season},episode=#{@episode}]"
-  end
-
   def generate_search_string()
     return "#{@name} #{generate_hd_string()} #{generate_episode_string()}"
   end
