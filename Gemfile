@@ -5,6 +5,7 @@ gem 'rails', '3.2.6'
 gem 'jquery-rails'
 gem 'sqlite3'
 gem "activesupport", ">= 3.2.6"
+gem 'delayed_job_active_record'
 
 # Gems used only for assets and not required
 # in production environments by default.

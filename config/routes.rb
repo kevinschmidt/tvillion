@@ -1,4 +1,6 @@
 TVillion::Application.routes.draw do
+  get "jobs/get_tvinfo"
+
   resources :shows
 
   get "home/index"
