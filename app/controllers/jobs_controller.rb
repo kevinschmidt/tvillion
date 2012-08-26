@@ -13,6 +13,7 @@ class JobsController < ApplicationController
       puts show.season
       puts show.next_show_date
       puts show.image_url
+      puts show.update_attributes(params[:show])
     end
     generate_response()
   end

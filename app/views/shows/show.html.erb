@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<img src="<%= @show.image_url %>" alt="<%= @show.image_url %>"/>
 <p>
   <b>Name:</b>
   <%= @show.name %>
@@ -19,10 +20,6 @@
 <p>
   <b>HD:</b>
   <%= @show.hd %>
-</p>
-<p>
-  <b>Image:</b>
-  <%= @show.image_url %>
 </p>
 <p>
   <b>Next Show Date:</b>
