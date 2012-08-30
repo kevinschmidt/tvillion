@@ -1,7 +1,7 @@
 class Show < ActiveRecord::Base
   attr_accessible :name, :season, :episode, :runtime, :hd, :image_url, :next_show_date
   
-  validates :name,  :presence => true
+  validates :name, :presence => true
   
   def generate_search_string()
     return "#{@name} #{generate_hd_string()} #{generate_episode_string()}"

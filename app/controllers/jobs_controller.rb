@@ -7,13 +7,8 @@ class JobsController < ApplicationController
     @shows = Show.all
     @shows.each do |show|
       generate_show(show)
-      puts show
-      puts show.name
-      puts show.episode
-      puts show.season
-      puts show.next_show_date
-      puts show.image_url
-      puts show.update_attributes(params[:show])
+      puts show.inspect
+      show.update_attributes(params[:show])
     end
     generate_response()
   end
