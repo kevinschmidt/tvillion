@@ -1,9 +1,12 @@
 require 'tvillion/tvinfo'
-require 'tvillion/show'
 
 describe TVillion::TvInfo do
   class TvInfoTest
     include TVillion::TvInfo
+  end
+  
+  class ShowTest
+    attr_accessor :name, :season, :episode, :runtime, :hd, :image_url, :next_show_date
   end
 
   context "parsing" do
@@ -28,7 +31,8 @@ describe TVillion::TvInfo do
       @resp.stub(:body).and_return(File.open("spec/data/futurama_show_info.xml", "r").read)
       @resp.should_receive(:body).once
       
-      show = @tvinfo.get_show_info(@http, "3628")
+      show = ShowTest.new
+      @tvinfo.get_show_info(@http, "3628", show)
       check_show(show)
     end
     
@@ -42,15 +46,16 @@ describe TVillion::TvInfo do
       @resp.stub(:body).and_return(File.open("spec/data/futurama_show_search.xml", "r").read, File.open("spec/data/futurama_show_info.xml", "r").read)
       @resp.should_receive(:body).twice
       
-      show = @tvinfo.generate_show("Futurama")
+      show = ShowTest.new
+      show.name = "Futurama"
+      @tvinfo.generate_show(show)
       check_show(show)
     end
     
     def check_show(show)
-      show.should be_instance_of(TVillion::Show)
       show.name.should eq("Futurama")
       show.season.should eq(7)
-      show.episode.should eq(5)
+      show.episode.should eq(12)
     end
   end
 end

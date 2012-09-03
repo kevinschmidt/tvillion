@@ -55,6 +55,7 @@ module TVillion
     def get_show_info(http, id, result_show)
       resp = http.request_get(URI.parse(URI.escape(INFO_URL + id)).request_uri)
       xml_elements = REXML::Document.new(resp.body).root.elements
+      result_show.name = xml_elements["name"].text
       result_show.image_url = xml_elements["image"].text
       
       airtime = xml_elements["airtime"].text
