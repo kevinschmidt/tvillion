@@ -28,7 +28,7 @@ module TVillion
       
       is720p = false
       result.each do |key, value|
-        mod_value = value.gsub(/\A[_\W]+|[_\W]+\Z/, '').squeeze().gsub(/[ _]/, '.')
+        mod_value = value.gsub(/\A[_\W]+|[_\W]+\Z/, '').gsub(/[._]/, ' ').squeeze(' ').titleize().gsub(/ /, '.') 
         is_number = true if Fixnum(mod_value) rescue false
         if ['seasonnum', 'episodenum'].include?(key)
           mod_value = mod_value.rjust(2, '0')
@@ -36,10 +36,24 @@ module TVillion
         if key == 'episodename' && value.index(/720[pP]/)
           is720p = true
         end
+        if key == 'fileend'
+          mod_value.downcase!()
+        end
         result[key] = mod_value
       end
       result['is720p'] = is720p
       return result
+    end
+    
+    
+    def processFolder(source_folder, target_folder)
+      FileUtils.mkdir_p(target_folder)
+      Dir.glob(source_folder+"/*.{avi,AVI,mpg,MPG,mp4,MP4,mkv,MKV}") do |filename|
+        filename.slice!(0..filename.rindex('/'))
+        new_file = target_folder+"/"+normalizeName(filename)
+        FileUtils.cp(source_folder+"/"+filename, new_file)
+        puts "Copied #{filename} to #{new_file}"
+      end
     end
   end
 end

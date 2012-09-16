@@ -45,5 +45,34 @@ describe TVillion::Renamer do
       newName = @renamer.normalizeName("Modern Family.S03E18.720p.HDTV.X264-DIMENSION.mkv")
       newName.should eq("Modern.Family.S03E18.720p.mkv")
     end
+    
+    it "should rename standard name, second version" do
+      newName = @renamer.normalizeName("Daria.S01E11.Road Worrier.avi")
+      newName.should eq("Daria.S01E11.avi")
+    end
+    
+    it "should rename standard name, uppercase" do
+      newName = @renamer.normalizeName("DARIA.S01E11.ROAD_WORRIER.avi")
+      newName.should eq("Daria.S01E11.avi")
+    end
+  end
+  
+  context "renaming" do
+    before(:each) do
+      @renamer = RenameTest.new
+    end
+    
+    after(:each) do
+      FileUtils.remove_dir('spec/data/renamer_target')
+    end
+    
+    it "should rename all filenames" do
+      @renamer.processFolder('spec/data/renamer', 'spec/data/renamer_target')
+      result = Dir.foreach('spec/data/renamer_target').to_a
+      result.size().should eq(5)
+      result[2].should eq('24.S01E14.avi')
+      result[3].should eq('Daria.S04E06.mpg')
+      result[4].should eq('The.Cleveland.Show.S03E22.720p.mkv')
+    end
   end
 end
