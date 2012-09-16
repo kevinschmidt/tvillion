@@ -8,6 +8,8 @@
     <th>Runtime</th>
     <th>HD</th>
     <th>Next Show Date</th>
+    <th>Next Season</th>
+    <th>Next Episode</th>
     <th></th>
     <th></th>
     <th></th>
@@ -21,6 +23,8 @@
     <td><%= show.runtime %></td>
     <td><%= show.hd %></td>
     <td><%= show.next_show_date %></td>
+    <td><%= show.next_season %></td>
+    <td><%= show.next_episode %></td>
     <td><%= link_to 'Show', show %></td>
     <td><%= link_to 'Edit', edit_show_path(show) %></td>
     <td><%= link_to 'Destroy', show, method: :delete, data: { confirm: 'Are you sure?' } %></td>

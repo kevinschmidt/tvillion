@@ -1,5 +1,5 @@
 class Show < ActiveRecord::Base
-  attr_accessible :name, :season, :episode, :runtime, :hd, :image_url, :next_show_date
+  attr_accessible :name, :season, :episode, :runtime, :hd, :image_url, :next_show_date, :next_season, :next_episode
   
   validates :name, :presence => true
   

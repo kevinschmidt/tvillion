@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120826162835) do
+ActiveRecord::Schema.define(:version => 20120916223427) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(:version => 20120826162835) do
     t.boolean  "hd"
     t.string   "image_url"
     t.datetime "next_show_date"
+    t.integer  "next_season"
+    t.integer  "next_episode"
   end
 
 end
