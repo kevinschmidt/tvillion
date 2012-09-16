@@ -6,7 +6,7 @@ describe TVillion::TvInfo do
   end
   
   class ShowTest
-    attr_accessor :name, :season, :episode, :runtime, :hd, :image_url, :next_show_date
+    attr_accessor :name, :season, :episode, :runtime, :hd, :image_url, :next_show_date, :next_season, :next_episode
   end
 
   context "parsing" do
@@ -32,7 +32,7 @@ describe TVillion::TvInfo do
       @resp.should_receive(:body).once
       
       show = ShowTest.new
-      @tvinfo.get_show_info(@http, "3628", show)
+      @tvinfo.get_show_info(@http, "3628", show, current_date=DateTime.parse("2012-08-27 13:41"))
       check_show(show)
     end
     
@@ -48,14 +48,14 @@ describe TVillion::TvInfo do
       
       show = ShowTest.new
       show.name = "Futurama"
-      @tvinfo.generate_show(show)
+      @tvinfo.generate_show(show, current_date=DateTime.parse("2012-08-27 13:41"))
       check_show(show)
     end
     
     def check_show(show)
       show.name.should eq("Futurama")
-      show.season.should eq(7)
-      show.episode.should eq(12)
+      show.next_season.should eq(7)
+      show.next_episode.should eq(12)
     end
   end
 end

@@ -25,7 +25,14 @@
   <b>Next Show Date:</b>
   <%= @show.next_show_date %>
 </p>
-
+<p>
+  <b>Next Season:</b>
+  <%= @show.next_season %>
+</p>
+<p>
+  <b>Next Episode:</b>
+  <%= @show.next_episode %>
+</p>
 
 <%= link_to 'Edit', edit_show_path(@show) %> |
 <%= link_to 'Back', shows_path %>

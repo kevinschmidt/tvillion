@@ -10,14 +10,14 @@ module TVillion
     SEARCH_URL = "http://services.tvrage.com/feeds/search.php?show="
     INFO_URL = "http://services.tvrage.com/feeds/full_show_info.php?sid="
     
-    def generate_show(result_show)
+    def generate_show(result_show, current_date=DateTime.now())
       http_request = Net::HTTP.new(INFO_HOST, INFO_PORT)
       http_request.read_timeout = 500
       http_request.start do |http|
         count = 0
         begin
           id = get_show_id(http, result_show.name)
-          return get_show_info(http, id, result_show)
+          return get_show_info(http, id, result_show, current_date)
         rescue Errno::ECONNRESET
           count += count
           if count > 3
@@ -52,7 +52,7 @@ module TVillion
       raise "show not found: " + title
     end
     
-    def get_show_info(http, id, result_show)
+    def get_show_info(http, id, result_show, current_date=DateTime.now())
       resp = http.request_get(URI.parse(URI.escape(INFO_URL + id)).request_uri)
       xml_elements = REXML::Document.new(resp.body).root.elements
       result_show.name = xml_elements["name"].text
@@ -64,14 +64,22 @@ module TVillion
       result_show.hd = true
       
       seasons_xml = xml_elements["Episodelist"].elements.to_a("//Season")
-      result_show.season = seasons_xml.last.attributes['no'].to_i
+      result_show.next_season = seasons_xml.last.attributes['no'].to_i
       seasons_xml.last.elements.each do |episode|
-        next_show_date = DateTime.parse(episode.elements['airdate'].text + " " + airtime + " " + timezone) + (result_show.runtime.to_f / 24 / 60)
-        if next_show_date > DateTime.now()
-          result_show.next_show_date = next_show_date
-          result_show.episode = episode.elements['seasonnum'].text.to_i - 1
-          break
+        begin
+          next_show_date = DateTime.parse(episode.elements['airdate'].text + " " + airtime + " " + timezone) + (result_show.runtime.to_f / 24 / 60)
+          if next_show_date > current_date
+            result_show.next_show_date = next_show_date
+            result_show.next_episode = episode.elements['seasonnum'].text.to_i
+            break
+          end
+        rescue ArgumentError => ex
+          puts "Problem parsing episode info: " + ex.message
         end
+      end
+      
+      if result_show.next_episode.nil?
+        result_show.next_season = nil
       end
       
       return result_show
