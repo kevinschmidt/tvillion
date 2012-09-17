@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module TVillion
   module Renamer
     STANDARD = Regexp.new('^(?<showname>.*)[ ._-][Ss](?<seasonnum>\d{1,2})[ ._-]?[Ee](?<episodenum>\d{1,2})[ ._-](?<episodename>.*)[.](?<fileend>\w{3,4})$')
