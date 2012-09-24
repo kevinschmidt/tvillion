@@ -6,7 +6,7 @@ describe TVillion::TvInfo do
   end
   
   class ShowTest
-    attr_accessor :name, :season, :episode, :runtime, :hd, :image_url, :next_show_date, :next_season, :next_episode
+    attr_accessor :name, :season, :episode, :runtime, :hd, :image_url, :last_show_date, :last_season, :last_episode, :next_show_date, :next_season, :next_episode
   end
 
   context "parsing" do
@@ -33,7 +33,7 @@ describe TVillion::TvInfo do
       
       show = ShowTest.new
       @tvinfo.get_show_info(@http, "3628", show, current_date=DateTime.parse("2012-08-27 13:41"))
-      check_show(show)
+      check_show_futurama(show)
     end
     
     it "ask for futurama and get full show info" do
@@ -49,13 +49,37 @@ describe TVillion::TvInfo do
       show = ShowTest.new
       show.name = "Futurama"
       @tvinfo.generate_show(show, current_date=DateTime.parse("2012-08-27 13:41"))
-      check_show(show)
+      check_show_futurama(show)
     end
     
-    def check_show(show)
+    it "should parse the info xml and get detail info about True Blood" do
+      @http.should_receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL + "12662")).request_uri).once
+      @resp.stub(:body).and_return(File.open("spec/data/trueblood_show_info_farseason.xml", "r").read)
+      @resp.should_receive(:body).once
+      
+      show = ShowTest.new
+      @tvinfo.get_show_info(@http, "12662", show, current_date=DateTime.parse("2012-08-27 13:41"))
+      check_show_trueblood(show)
+    end
+    
+    def check_show_futurama(show)
       show.name.should eq("Futurama")
+      show.last_show_date.should eq(DateTime.parse("2012-08-23 03:00 UTC"))
+      show.last_season.should eq(7)
+      show.last_episode.should eq(11)
+      show.next_show_date.should eq(DateTime.parse("2012-08-30 03:00 UTC"))
       show.next_season.should eq(7)
       show.next_episode.should eq(12)
+    end
+    
+    def check_show_trueblood(show)
+      show.name.should eq("True Blood")
+      show.last_show_date.should eq(DateTime.parse("2012-08-27 02:00 UTC"))
+      show.last_season.should eq(5)
+      show.last_episode.should eq(12)
+      show.next_show_date.should be_nil
+      show.next_season.should be_nil
+      show.next_episode.should be_nil
     end
   end
 end

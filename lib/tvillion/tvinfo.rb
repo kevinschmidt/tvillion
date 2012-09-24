@@ -64,22 +64,26 @@ module TVillion
       result_show.hd = true
       
       seasons_xml = xml_elements["Episodelist"].elements.to_a("//Season")
-      result_show.next_season = seasons_xml.last.attributes['no'].to_i
-      seasons_xml.last.elements.each do |episode|
-        begin
-          next_show_date = DateTime.parse(episode.elements['airdate'].text + " " + airtime + " " + timezone) + (result_show.runtime.to_f / 24 / 60)
-          if next_show_date > current_date
-            result_show.next_show_date = next_show_date
-            result_show.next_episode = episode.elements['seasonnum'].text.to_i
-            break
+      seasons_xml.each do |season|
+        season.elements.each do |episode|
+          begin
+            show_date = DateTime.parse(episode.elements['airdate'].text + " " + airtime + " " + timezone)
+            if show_date > current_date
+              result_show.next_show_date = show_date
+              result_show.next_season = season.attributes['no'].to_i
+              result_show.next_episode = episode.elements['seasonnum'].text.to_i
+              break
+            end
+            result_show.last_show_date = show_date
+            result_show.last_season = season.attributes['no'].to_i
+            result_show.last_episode = episode.elements['seasonnum'].text.to_i  
+          rescue ArgumentError => ex
+            puts "Problem parsing episode info: " + ex.message
           end
-        rescue ArgumentError => ex
-          puts "Problem parsing episode info: " + ex.message
         end
-      end
-      
-      if result_show.next_episode.nil?
-        result_show.next_season = nil
+        unless result_show.next_show_date.nil?
+          break
+        end
       end
       
       return result_show
