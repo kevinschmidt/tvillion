@@ -62,6 +62,16 @@ describe TVillion::TvInfo do
       check_show_trueblood(show)
     end
     
+    it "should parse the info xml and get detail info about Futurama with two episodes the same day" do
+      @http.should_receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL + "3628")).request_uri).once
+      @resp.stub(:body).and_return(File.open("spec/data/futurama_show_info_twosameday.xml", "r").read)
+      @resp.should_receive(:body).once
+      
+      show = ShowTest.new
+      @tvinfo.get_show_info(@http, "3628", show, current_date=DateTime.parse("2012-09-01 13:41"))
+      check_show_futurama_twosameday(show)
+    end
+    
     def check_show_futurama(show)
       show.name.should eq("Futurama")
       show.last_show_date.should eq(DateTime.parse("2012-08-23 03:00 UTC"))
@@ -70,6 +80,16 @@ describe TVillion::TvInfo do
       show.next_show_date.should eq(DateTime.parse("2012-08-30 03:00 UTC"))
       show.next_season.should eq(7)
       show.next_episode.should eq(12)
+    end
+    
+    def check_show_futurama_twosameday(show)
+      show.name.should eq("Futurama")
+      show.last_show_date.should eq(DateTime.parse("2012-08-30 03:00 UTC"))
+      show.last_season.should eq(7)
+      show.last_episode.should eq(13)
+      show.next_show_date.should be_nil
+      show.next_season.should be_nil
+      show.next_episode.should be_nil
     end
     
     def check_show_trueblood(show)

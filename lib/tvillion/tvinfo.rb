@@ -63,6 +63,9 @@ module TVillion
       result_show.runtime = xml_elements["runtime"].text.to_i
       result_show.hd = true
       
+      result_show.next_show_date = nil
+      result_show.next_season = nil
+      result_show.next_episode = nil
       seasons_xml = xml_elements["Episodelist"].elements.to_a("//Season")
       seasons_xml.each do |season|
         season.elements.each do |episode|
