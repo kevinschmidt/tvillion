@@ -4,7 +4,7 @@ class Show < ActiveRecord::Base
   validates :name, :presence => true
   
   def generate_search_string()
-    return "#{@name} #{generate_hd_string()} #{generate_episode_string()}"
+    return "#{name} #{generate_hd_string()} #{generate_episode_string()}"
   end
 
   def generate_hd_string()
