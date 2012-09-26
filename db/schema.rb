@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924204048) do
+ActiveRecord::Schema.define(:version => 20120926201151) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20120924204048) do
     t.datetime "last_show_date"
     t.integer  "last_season"
     t.integer  "last_episode"
+    t.integer  "tvrage_id"
   end
 
 end

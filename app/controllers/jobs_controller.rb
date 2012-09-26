@@ -20,19 +20,24 @@ class JobsController < ApplicationController
     @transmission_client = TVillion::Transmission::Client.new('media.lan', '9091')
     @shows = Show.all
     @shows.each do |show|
-      if show.season != show.last_season
-        puts "cannot download episodes for #{show.name}, download from a different season not supported"
+      if show.season.nil? or show.episode.nil?
+        puts "skipping #{show.name}, no episodes to download"
         next
       end
-      if show.last_episode == show.episode
-        puts "skipping #{show.name}, no episodes to download"
+      if show.season != show.last_season
+        puts "cannot download episodes for #{show.name}, download from a different season not supported"
         next
       end
       
       torrent_url = get_search_results(show.generate_search_string())
       unless torrent_url.nil?
         @transmission_client.add_torrent(torrent_url)
-        show.episode = show.episode+1
+        if show.last_episode == show.episode
+          show.season = nil
+          show.episode = nil
+        else
+          show.episode = show.episode+1
+        end
       end
       show.update_attributes(params[:show])
     end

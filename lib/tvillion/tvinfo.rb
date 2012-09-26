@@ -16,8 +16,10 @@ module TVillion
       http_request.start do |http|
         count = 0
         begin
-          id = get_show_id(http, result_show.name)
-          return get_show_info(http, id, result_show, current_date)
+          if result_show.tvrage_id.nil?
+            result_show.tvrage_id = get_show_id(http, result_show.name)
+          end
+          return get_show_info(http, result_show.tvrage_id, result_show, current_date)
         rescue Errno::ECONNRESET
           count += count
           if count > 3
@@ -35,7 +37,7 @@ module TVillion
       
       ids = []
       doc.elements.each('Results/show/showid') do |id|
-        ids.push(id.text)
+        ids.push(id.text.to_i)
       end
       names = []
       doc.elements.each('Results/show/name') do |name|
@@ -53,7 +55,7 @@ module TVillion
     end
     
     def get_show_info(http, id, result_show, current_date=DateTime.now())
-      resp = http.request_get(URI.parse(URI.escape(INFO_URL + id)).request_uri)
+      resp = http.request_get(URI.parse(URI.escape(INFO_URL + id.to_s)).request_uri)
       xml_elements = REXML::Document.new(resp.body).root.elements
       result_show.name = xml_elements["name"].text
       result_show.image_url = xml_elements["image"].text

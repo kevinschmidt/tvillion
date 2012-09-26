@@ -6,7 +6,7 @@ describe TVillion::TvInfo do
   end
   
   class ShowTest
-    attr_accessor :name, :season, :episode, :runtime, :hd, :image_url, :last_show_date, :last_season, :last_episode, :next_show_date, :next_season, :next_episode
+    attr_accessor :name, :season, :episode, :tvrage_id, :runtime, :hd, :image_url, :last_show_date, :last_season, :last_episode, :next_show_date, :next_season, :next_episode
   end
 
   context "parsing" do
@@ -23,7 +23,7 @@ describe TVillion::TvInfo do
       @resp.should_receive(:body).once
       
       id = @tvinfo.get_show_id(@http, "Futurama")
-      id.should eq("3628")
+      id.should eq(3628)
     end
     
     it "should parse the info xml and get detail info about Futurama" do
@@ -32,7 +32,8 @@ describe TVillion::TvInfo do
       @resp.should_receive(:body).once
       
       show = ShowTest.new
-      @tvinfo.get_show_info(@http, "3628", show, current_date=DateTime.parse("2012-08-27 13:41"))
+      show.tvrage_id = 3628
+      @tvinfo.get_show_info(@http, show.tvrage_id, show, current_date=DateTime.parse("2012-08-27 13:41"))
       check_show_futurama(show)
     end
     
@@ -58,7 +59,8 @@ describe TVillion::TvInfo do
       @resp.should_receive(:body).once
       
       show = ShowTest.new
-      @tvinfo.get_show_info(@http, "12662", show, current_date=DateTime.parse("2012-08-27 13:41"))
+      show.tvrage_id = 12662
+      @tvinfo.get_show_info(@http, show.tvrage_id, show, current_date=DateTime.parse("2012-08-27 13:41"))
       check_show_trueblood(show)
     end
     
@@ -68,12 +70,14 @@ describe TVillion::TvInfo do
       @resp.should_receive(:body).once
       
       show = ShowTest.new
-      @tvinfo.get_show_info(@http, "3628", show, current_date=DateTime.parse("2012-09-01 13:41"))
+      show.tvrage_id = 3628
+      @tvinfo.get_show_info(@http, show.tvrage_id, show, current_date=DateTime.parse("2012-09-01 13:41"))
       check_show_futurama_twosameday(show)
     end
     
     def check_show_futurama(show)
       show.name.should eq("Futurama")
+      show.tvrage_id.should eq(3628)
       show.last_show_date.should eq(DateTime.parse("2012-08-23 03:00 UTC"))
       show.last_season.should eq(7)
       show.last_episode.should eq(11)
@@ -84,6 +88,7 @@ describe TVillion::TvInfo do
     
     def check_show_futurama_twosameday(show)
       show.name.should eq("Futurama")
+      show.tvrage_id.should eq(3628)
       show.last_show_date.should eq(DateTime.parse("2012-08-30 03:00 UTC"))
       show.last_season.should eq(7)
       show.last_episode.should eq(13)
@@ -94,6 +99,7 @@ describe TVillion::TvInfo do
     
     def check_show_trueblood(show)
       show.name.should eq("True Blood")
+      show.tvrage_id.should eq(12662)
       show.last_show_date.should eq(DateTime.parse("2012-08-27 02:00 UTC"))
       show.last_season.should eq(5)
       show.last_episode.should eq(12)
