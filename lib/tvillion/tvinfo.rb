@@ -126,17 +126,26 @@ module TVillion
         if result_show.season == season.attributes['no'].to_i
           season.elements.each_cons(2) do |episodes|
             begin
-              result_show.episode = episodes[1].elements['seasonnum'].text.to_i if result_show.episode == episodes[0].elements['seasonnum'].text.to_i
-              found_new_episode = true
-              break
+              if result_show.episode == episodes[0].elements['seasonnum'].text.to_i
+                result_show.episode = episodes[1].elements['seasonnum'].text.to_i
+                found_new_episode = true
+                break
+              end
             rescue ArgumentError => ex
               puts "Problem parsing episode info: " + ex.message
             end
           end
+          break if found_new_episode
+        end
+        if result_show.season == season.attributes['no'].to_i - 1
+          result_show.season = season.attributes['no'].to_i
+          result_show.episode = 1
+          found_new_episode = true
+          break
         end
       end
       
-      if found_new_episode.false?
+      if not found_new_episode
         result_show.season = nil
         result_show.episode = nil
       end

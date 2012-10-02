@@ -28,18 +28,18 @@ class JobsController < ApplicationController
         puts "cannot download episodes for #{show.name}, download from a different season not supported"
         next
       end
+      if show.episode > show.last_episode
+        puts "cannot download episodes for #{show.name}, episode not yet aired"
+        next
+      end
       
       torrent_url = get_search_results(show.generate_search_string())
       unless torrent_url.nil?
         @transmission_client.add_torrent(torrent_url)
-        if show.last_episode == show.episode
-          show.season = nil
-          show.episode = nil
-        else
-          show.episode = show.episode+1
-        end
+        find_next_episode(show)
+        puts show.inspect
+        show.update_attributes(params[:show])
       end
-      show.update_attributes(params[:show])
     end
     generate_response()
   end

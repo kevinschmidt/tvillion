@@ -75,6 +75,60 @@ describe TVillion::TvInfo do
       check_show_futurama_twosameday(show)
     end
     
+    it "should parse the info xml and get normal next episode for Futurama" do
+      @http.should_receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL + "3628")).request_uri).once
+      @resp.stub(:body).and_return(File.open("spec/data/futurama_show_info.xml", "r").read)
+      @resp.should_receive(:body).once
+      
+      show = ShowTest.new
+      show.name = "Futurama"
+      show.tvrage_id = 3628
+      show.season = 6
+      show.episode = 17
+      @tvinfo.find_next_episode(@http, show.tvrage_id, show)
+      
+      show.name.should eq("Futurama")
+      show.tvrage_id.should eq(3628)
+      show.season.should eq(6)
+      show.episode.should eq(18)
+    end
+    
+    it "should parse the info xml and get next season episode for Futurama" do
+      @http.should_receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL + "3628")).request_uri).once
+      @resp.stub(:body).and_return(File.open("spec/data/futurama_show_info.xml", "r").read)
+      @resp.should_receive(:body).once
+      
+      show = ShowTest.new
+      show.name = "Futurama"
+      show.tvrage_id = 3628
+      show.season = 6
+      show.episode = 26
+      @tvinfo.find_next_episode(@http, show.tvrage_id, show)
+      
+      show.name.should eq("Futurama")
+      show.tvrage_id.should eq(3628)
+      show.season.should eq(7)
+      show.episode.should eq(1)
+    end
+    
+    it "should parse the info xml and get next unaired season episode for True Blood" do
+      @http.should_receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL + "12662")).request_uri).once
+      @resp.stub(:body).and_return(File.open("spec/data/trueblood_show_info_farseason.xml", "r").read)
+      @resp.should_receive(:body).once
+      
+      show = ShowTest.new
+      show.name = "True Blood"
+      show.tvrage_id = 12662
+      show.season = 5
+      show.episode = 12
+      @tvinfo.find_next_episode(@http, show.tvrage_id, show)
+      
+      show.name.should eq("True Blood")
+      show.tvrage_id.should eq(12662)
+      show.season.should eq(6)
+      show.episode.should eq(1)
+    end
+    
     def check_show_futurama(show)
       show.name.should eq("Futurama")
       show.tvrage_id.should eq(3628)
