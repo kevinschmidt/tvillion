@@ -25,7 +25,29 @@ module TVillion
           if count > 3
             raise
           end
-          puts "got connection reset from tvrage.com trying to get tvinfo, request ${count}/3"
+          puts "got connection reset from tvrage.com trying to get tvinfo, request #{count}/3"
+          retry
+        end
+      end
+    end
+    
+    def find_next_episode(result_show)
+      http_request = Net::HTTP.new(INFO_HOST, INFO_PORT)
+      http_request.read_timeout = 500
+      http_request.start do |http|
+        count = 0
+        begin
+          if result_show.tvrage_id.nil?
+            puts "skipping, no tvrage id for show " + result_show.name
+            return
+          end
+          return get_show_info(http, result_show.tvrage_id, result_show, current_date)
+        rescue Errno::ECONNRESET
+          count += count
+          if count > 3
+            raise
+          end
+          puts "got connection reset from tvrage.com trying to get tvinfo, request #{count}/3"
           retry
         end
       end
@@ -63,7 +85,7 @@ module TVillion
       airtime = xml_elements["airtime"].text
       timezone = xml_elements["timezone"].text
       result_show.runtime = xml_elements["runtime"].text.to_i
-      result_show.hd = true
+      result_show.hd = false if result_show.hd.nil?
       
       result_show.next_show_date = nil
       result_show.next_season = nil
@@ -89,6 +111,34 @@ module TVillion
         unless result_show.next_show_date.nil?
           break
         end
+      end
+      
+      return result_show
+    end
+    
+    def find_next_episode(http, id, result_show)
+      resp = http.request_get(URI.parse(URI.escape(INFO_URL + id.to_s)).request_uri)
+      xml_elements = REXML::Document.new(resp.body).root.elements
+      
+      found_new_episode = false
+      seasons_xml = xml_elements["Episodelist"].elements.to_a("//Season")
+      seasons_xml.each do |season|
+        if result_show.season == season.attributes['no'].to_i
+          season.elements.each_cons(2) do |episodes|
+            begin
+              result_show.episode = episodes[1].elements['seasonnum'].text.to_i if result_show.episode == episodes[0].elements['seasonnum'].text.to_i
+              found_new_episode = true
+              break
+            rescue ArgumentError => ex
+              puts "Problem parsing episode info: " + ex.message
+            end
+          end
+        end
+      end
+      
+      if found_new_episode.false?
+        result_show.season = nil
+        result_show.episode = nil
       end
       
       return result_show

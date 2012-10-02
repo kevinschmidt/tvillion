@@ -4,7 +4,7 @@ module TVillion
   module Renamer
     STANDARD = Regexp.new('^(?<showname>.*)[ ._-][Ss](?<seasonnum>\d{1,2})[ ._-]?[Ee](?<episodenum>\d{1,2})[ ._-](?<episodename>.*)[.](?<fileend>\w{3,4})$')
     LONG_NAMES = Regexp.new('^(?<showname>.*)[Ss]eason[ .](?<seasonnum>[0-9]{1,2})[ .][Ee]pisode[ .](?<episodenum>\d{2})(?<episodename>.*)[.](?<fileend>\w{3,4})')
-    JUST_NUMBERS = Regexp.new('^(?<showname>.*)(?<seasonnum>[0-9]{1,2})(?<episodenum>\d{2})(?<episodename>.*)[.](?<fileend>\w{3,4})$')
+    JUST_NUMBERS = Regexp.new('^(?<showname>.*)(?<seasonnum>[0-9]{1,2})[xX]?(?<episodenum>\d{2})(?<episodename>.*)[.](?<fileend>\w{3,4})$')
     REGEX_ARRAY = [STANDARD, LONG_NAMES, JUST_NUMBERS]
     OUTPUT_FORMAT_SD = '%{showname}.S%{seasonnum}E%{episodenum}.%{fileend}'
     OUTPUT_FORMAT_HD = '%{showname}.S%{seasonnum}E%{episodenum}.720p.%{fileend}'

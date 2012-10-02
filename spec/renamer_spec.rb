@@ -20,6 +20,11 @@ describe TVillion::Renamer do
       puts matchData
     end
     
+    it "should parse x number name" do
+      matchData = @renamer.matchName("Gilmore Girls [3x06] - Take the Deviled Eggs....avi")
+      puts matchData
+    end
+    
     it "should parse standard name" do
       matchData = @renamer.matchName("Modern Family.S03E18.720p.HDTV.X264-DIMENSION.mkv")
       puts matchData
@@ -39,6 +44,11 @@ describe TVillion::Renamer do
     it "should rename long name" do
       newName = @renamer.normalizeName("24 Season 1 Episode 10 - 9AM - 10AM.avi")
       newName.should eq("24.S01E10.avi")
+    end
+    
+    it "should rename x number name" do
+      newName = @renamer.normalizeName("Gilmore Girls [3x06] - Take the Deviled Eggs....avi")
+      newName.should eq("Gilmore.Girls.S03E06.avi")
     end
     
     it "should rename standard name" do
