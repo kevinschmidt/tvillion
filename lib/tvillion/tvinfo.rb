@@ -31,7 +31,7 @@ module TVillion
       end
     end
     
-    def find_next_episode(result_show)
+    def get_next_episode(result_show)
       http_request = Net::HTTP.new(INFO_HOST, INFO_PORT)
       http_request.read_timeout = 500
       http_request.start do |http|
@@ -41,7 +41,7 @@ module TVillion
             puts "skipping, no tvrage id for show " + result_show.name
             return
           end
-          return get_show_info(http, result_show.tvrage_id, result_show, current_date)
+          return find_next_episode(http, result_show.tvrage_id, result_show)
         rescue Errno::ECONNRESET
           count += count
           if count > 3
