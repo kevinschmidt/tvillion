@@ -29,6 +29,11 @@ describe TVillion::Renamer do
       matchData = @renamer.matchName("Modern Family.S03E18.720p.HDTV.X264-DIMENSION.mkv")
       puts matchData
     end
+    
+    it "should parse standard name, complicated" do
+      matchData = @renamer.matchName("gilmore.girls.s02e05.avi")
+      puts matchData
+    end
   end
   
   context "normalizing" do
@@ -64,6 +69,11 @@ describe TVillion::Renamer do
     it "should rename standard name, uppercase" do
       newName = @renamer.normalizeName("DARIA.S01E11.ROAD_WORRIER.avi")
       newName.should eq("Daria.S01E11.avi")
+    end
+    
+    it "should rename standard name, complicated" do
+      newName = @renamer.normalizeName("gilmore.girls.s02e05.avi")
+      newName.should eq("Gilmore.Girls.S02E05.avi")
     end
   end
   

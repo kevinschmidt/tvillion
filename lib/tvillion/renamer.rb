@@ -2,7 +2,7 @@ require 'fileutils'
 
 module TVillion
   module Renamer
-    STANDARD = Regexp.new('^(?<showname>.*)[ ._-][Ss](?<seasonnum>\d{1,2})[ ._-]?[Ee](?<episodenum>\d{1,2})[ ._-](?<episodename>.*)[.](?<fileend>\w{3,4})$')
+    STANDARD = Regexp.new('^(?<showname>.*)[ ._-][Ss](?<seasonnum>\d{1,2})[ ._-]?[Ee](?<episodenum>\d{1,2})[ ._-]?(?<episodename>.*)[.](?<fileend>\w{3,4})$')
     LONG_NAMES = Regexp.new('^(?<showname>.*)[Ss]eason[ .](?<seasonnum>[0-9]{1,2})[ .][Ee]pisode[ .](?<episodenum>\d{2})(?<episodename>.*)[.](?<fileend>\w{3,4})')
     JUST_NUMBERS = Regexp.new('^(?<showname>.*)(?<seasonnum>[0-9]{1,2})[xX]?(?<episodenum>\d{2})(?<episodename>.*)[.](?<fileend>\w{3,4})$')
     REGEX_ARRAY = [STANDARD, LONG_NAMES, JUST_NUMBERS]
@@ -23,7 +23,7 @@ module TVillion
     def matchName(name)
       matchResults = REGEX_ARRAY.chunk {|regex| regex.match(name)}
       if matchResults.none?
-        raise "unsupported file name"
+        raise "unsupported file name: " + name
       end
       matchData = matchResults.first[0]
       result = Hash[ matchData.names.zip(matchData.captures) ]
