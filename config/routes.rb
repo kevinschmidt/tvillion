@@ -1,4 +1,5 @@
 TVillion::Application.routes.draw do
+  get "jobs/index"
   get "jobs/get_tvinfo"
   get "jobs/schedule_next_download"
 
