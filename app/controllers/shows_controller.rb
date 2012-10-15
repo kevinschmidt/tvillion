@@ -1,4 +1,8 @@
+require 'tvillion/tvinfo'
+
 class ShowsController < ApplicationController
+  include TVillion::TvInfo
+
   # GET /shows
   # GET /shows.json
   def index
@@ -79,6 +83,15 @@ class ShowsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to shows_url }
       format.json { head :no_content }
+    end
+  end
+
+  # GET /shows/search/query.json
+  def search
+    @search_result = search_show(params[:query])
+    respond_to do |format|
+      format.json { render json: @search_result }
+      format.js
     end
   end
 end

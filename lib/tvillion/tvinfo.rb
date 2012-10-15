@@ -17,7 +17,7 @@ module TVillion
         count = 0
         begin
           if result_show.tvrage_id.nil?
-            result_show.tvrage_id = get_show_id(http, result_show.name)
+            raise "cannot generate show without tvrage_id"
           end
           return get_show_info(http, result_show.tvrage_id, result_show, current_date)
         rescue Errno::ECONNRESET
@@ -53,27 +53,28 @@ module TVillion
       end
     end
     
-    def get_show_id(http, title)
-      resp = http.request_get(URI.parse(URI.escape(SEARCH_URL + title)).request_uri)
-      doc = REXML::Document.new(resp.body)
-      
-      ids = []
-      doc.elements.each('Results/show/showid') do |id|
-        ids.push(id.text.to_i)
-      end
-      names = []
-      doc.elements.each('Results/show/name') do |name|
-        names.push(name.text)
-      end
-      
-      id = nil
-      names.each_with_index do |item, index|
-        if item == title
-          return ids[index]
+    def search_show(title)
+      http_request = Net::HTTP.new(INFO_HOST, INFO_PORT)
+      http_request.read_timeout = 500
+      http_request.start do |http|
+        count = 0
+        begin
+          result = {}
+          resp = http.request_get(URI.parse(URI.escape(SEARCH_URL + title)).request_uri)
+          doc = REXML::Document.new(resp.body)
+          doc.elements.each('Results/show') do |show|
+            result[show.elements['showid'].text.to_i] = show.elements['name'].text
+          end
+          return result
+        rescue Errno::ECONNRESET
+          count += count
+          if count > 3
+            raise
+          end
+          puts "got connection reset from tvrage.com trying to get tvinfo, request #{count}/3"
+          retry
         end
       end
-      
-      raise "show not found: " + title
     end
     
     def get_show_info(http, id, result_show, current_date=DateTime.now())

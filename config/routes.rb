@@ -3,7 +3,11 @@ TVillion::Application.routes.draw do
   get "jobs/get_tvinfo"
   get "jobs/schedule_next_download"
 
-  resources :shows
+  resources :shows do
+    collection do
+      get 'search/:query' => "shows#search"
+    end
+  end
 
   get "home/index"
 
