@@ -3,6 +3,7 @@ class ShowsController < ApplicationController
   # GET /shows.json
   def index
     @shows = Show.all
+    @shows.sort!
 
     respond_to do |format|
       format.html # index.html.erb

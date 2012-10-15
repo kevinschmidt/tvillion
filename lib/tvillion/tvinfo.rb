@@ -99,6 +99,10 @@ module TVillion
               result_show.next_show_date = show_date
               result_show.next_season = season.attributes['no'].to_i
               result_show.next_episode = episode.elements['seasonnum'].text.to_i
+              if result_show.episode.nil?
+                result_show.season = result_show.next_season
+                result_show.episode = result_show.next_episode
+              end
               break
             end
             result_show.last_show_date = show_date
