@@ -13,3 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$(function () {
+  $('#shows_search').submit(function () {
+    $.get(this.action, $(this).serialize(), null, 'script');
+    return false;
+  });
+});

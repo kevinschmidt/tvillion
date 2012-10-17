@@ -1,0 +1,12 @@
+<h1>Search and add show</h1>
+
+<%= form_tag search_shows_path, :method => 'get', :remote => true, :id => "shows_search" do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<div id="search_results"></div>
+
+<%= link_to 'Back', shows_path %>

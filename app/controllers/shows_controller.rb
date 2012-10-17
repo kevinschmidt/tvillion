@@ -86,12 +86,17 @@ class ShowsController < ApplicationController
     end
   end
 
-  # GET /shows/search/query.json
+  # GET /shows/search.json
   def search
-    @search_result = search_show(params[:query])
+    if params.include?(:query)
+      @search_result = search_show(params[:query])
+      puts @search_result
+    end
+    
     respond_to do |format|
-      format.json { render json: @search_result }
       format.js
+      format.html
+      format.json { render json: @search_result }
     end
   end
 end

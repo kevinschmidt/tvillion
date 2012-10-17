@@ -5,7 +5,7 @@ TVillion::Application.routes.draw do
 
   resources :shows do
     collection do
-      get 'search/:query' => "shows#search"
+      get 'search'
     end
   end
 
