@@ -1,12 +1,30 @@
 <h1>Search and add show</h1>
 
-<%= form_tag search_shows_path, :method => 'get', :remote => true, :id => "shows_search" do %>
+<%= form_tag search_shows_path, :method => 'get', :remote => true, :id => "shows_search_lookup_form" do %>
   <p>
     <%= text_field_tag :query, params[:query] %>
     <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>
 
-<div id="search_results"></div>
+<%= form_tag shows_path, :method => 'post', :id => "shows_search_create_form" do %>
+  <%= hidden_field_tag :name %>
+  <%= hidden_field_tag :tvrage_id %>
+<% end %>
 
-<%= link_to 'Back', shows_path %>
+<div id="search_results">
+  <table id="search_result_table" class="tablesorter">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+
+<div id="notice"></div>
+<br/>
+<div><%= link_to 'Back', shows_path %></div>

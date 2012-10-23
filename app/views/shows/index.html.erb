@@ -1,6 +1,7 @@
 <h1>Listing shows</h1>
 
-<table width="100%">
+<table width="100%" class="tablesorter" id="shows_main_table">
+  <thead>
   <tr width="100%">
     <th>Name</th>
     <th>Season</th>
@@ -17,7 +18,9 @@
     <th></th>
     <th></th>
   </tr>
-
+  </thead>
+  
+  <tbody>
 <% @shows.each do |show| %>
   <tr>
     <td><%= show.name %></td>
@@ -36,8 +39,9 @@
     <td><%= link_to 'Destroy', show, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+  </tbody>
 </table>
 
 <br />
 
-<%= link_to 'New Show', new_show_path %>
+<%= link_to 'New Show', search_shows_path %>

@@ -3,6 +3,7 @@ source "http://rubygems.org"
 # Add dependencies required to use your gem here.
 gem 'rails', '3.2.6'
 gem 'jquery-rails'
+gem 'jquery-tablesorter'
 gem 'sqlite3'
 gem "activesupport", ">= 3.2.6"
 gem 'delayed_job_active_record'
