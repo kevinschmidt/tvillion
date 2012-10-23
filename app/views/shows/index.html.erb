@@ -21,8 +21,8 @@
   </thead>
   
   <tbody>
-<% @shows.each do |show| %>
-  <tr>
+<% @shows.each_with_index do |show, index| %>
+  <tr <%= index.odd? ? 'class=odd' : 'class=even' %>>
     <td><%= show.name %></td>
     <td><%= show.season %></td>
     <td><%= show.episode %></td>

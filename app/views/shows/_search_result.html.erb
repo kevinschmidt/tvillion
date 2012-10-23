@@ -1,6 +1,6 @@
 <% unless @search_result.nil? %>
-  <% for result in @search_result %>
-    <tr>
+  <% @search_result.each_with_index do |result, index| %>
+    <tr <%= index.odd? ? 'class=odd' : 'class=even' %>>
       <td class="id"><%= result[0] %></td>
       <td class="name"><%= result[1] %></td>
     </tr>
