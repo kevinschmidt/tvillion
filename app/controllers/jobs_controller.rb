@@ -35,10 +35,16 @@ class JobsController < ApplicationController
       
       torrent_url = get_search_results(show.generate_search_string())
       unless torrent_url.nil?
-        @transmission_client.add_torrent(torrent_url)
-        get_next_episode(show)
-        puts show.inspect
-        show.update_attributes(params[:show])
+        begin
+          @transmission_client.add_torrent(torrent_url)
+          get_next_episode(show)
+          puts show.inspect
+          show.update_attributes(params[:show])
+        rescue Exception => e
+          puts "error downloading show #{show.name}: " + e.message
+        end
+      else
+        puts "cannot download episodes for #{show.name}, no torrents found"
       end
     end
     generate_response()
