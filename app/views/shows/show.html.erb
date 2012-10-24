@@ -49,6 +49,10 @@
   <b>Next Episode:</b>
   <%= @show.next_episode %>
 </p>
+<p>
+  <b>Search Name:</b>
+  <%= @show.search_name %>
+</p>
 
 <%= link_to 'Edit', edit_show_path(@show) %> |
 <%= link_to 'Back', shows_path %>

@@ -1,12 +1,20 @@
 class Show < ActiveRecord::Base
   include Comparable
   
-  attr_accessible :name, :season, :episode, :tvrage_id, :runtime, :hd, :image_url, :last_show_date, :last_season, :last_episode, :next_show_date, :next_season, :next_episode
+  attr_accessible :name, :season, :episode, :tvrage_id, :runtime, :hd, :image_url, :last_show_date, :last_season, :last_episode, :next_show_date, :next_season, :next_episode, :search_name
   
   validates :name, :presence => true
   
   def generate_search_string()
-    return "#{name} #{generate_hd_string()} #{generate_episode_string()}"
+    return "#{generate_name_string()} #{generate_hd_string()} #{generate_episode_string()}"
+  end
+
+  def generate_name_string()
+    if search_name
+      return search_name
+    else
+      return name
+    end
   end
 
   def generate_hd_string()
