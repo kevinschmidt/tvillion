@@ -83,6 +83,8 @@ module TVillion
       result_show.name = xml_elements["name"].text
       result_show.image_url = xml_elements["image"].text
       
+      return result_show unless xml_elements["airtime"] and xml_elements["timezone"] and xml_elements["runtime"]
+      
       airtime = xml_elements["airtime"].text
       timezone = xml_elements["timezone"].text
       result_show.runtime = xml_elements["runtime"].text.to_i
