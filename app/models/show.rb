@@ -10,10 +10,10 @@ class Show < ActiveRecord::Base
   end
 
   def generate_name_string()
-    if search_name
-      return search_name
-    else
+    if search_name.nil? or search_name.blank?
       return name
+    else
+      return search_name
     end
   end
 
