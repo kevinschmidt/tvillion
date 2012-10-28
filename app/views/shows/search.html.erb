@@ -1,0 +1,26 @@
+<h1>Search and add show</h1>
+
+<%= form_tag search_shows_path, :method => 'get', :remote => true, :id => "shows_search_lookup_form" do %>
+  <div>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search", :name => nil %>
+  </div>
+<% end %>
+
+<div id="search_results">
+  <table id="search_result_table" class="tablesorter">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+
+<div id="loading-indicator"><%= image_tag("ajax-loader.gif") %></div>
+<div id="notice"></div>
+<br/>
+<div><%= link_to 'Back', shows_path %></div>

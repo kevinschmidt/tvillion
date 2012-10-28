@@ -1,13 +1,28 @@
 source "http://rubygems.org"
+
 # Add dependencies required to use your gem here.
-# Example:
-#   gem "activesupport", ">= 2.3.5"
+gem 'rails', '3.2.6'
+gem 'jquery-rails'
+gem 'jquery-tablesorter'
+gem 'sqlite3'
 gem "activesupport", ">= 3.2.6"
+gem 'delayed_job_active_record'
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # gem 'therubyracer', :platforms => :ruby
+
+  gem 'uglifier', '>= 1.0.3'
+end
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
-  gem "shoulda", ">= 0"
   gem "rspec", ">= 2.8.0"
   gem "rspec-prof", ">= 0"
   gem "yard", ">= 0.7"  

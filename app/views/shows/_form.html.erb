@@ -1,0 +1,42 @@
+<%= form_for(@show) do |f| %>
+  <% if @show.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@show.errors.count, "error") %> prohibited this show from being saved:</h2>
+
+      <ul>
+      <% @show.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+  	<%= f.label :hd %><br />
+    <%= f.radio_button :hd, true %>on
+    <%= f.radio_button :hd, false %>off<br />
+  </div>
+  <div class="field">
+    <%= f.label :season %><br />
+    <%= f.number_field :season %>
+  </div>
+  <div class="field">
+    <%= f.label :episode %><br />
+    <%= f.number_field :episode %>
+  </div>
+  <div class="field">
+    <%= f.label :tvrage_id %><br />
+    <%= f.number_field :tvrage_id %>
+  </div>
+  <div class="field">
+    <%= f.label :search_name %><br />
+    <%= f.text_field :search_name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

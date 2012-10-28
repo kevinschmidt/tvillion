@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/tvillion'
+include TVillion::Renamer
+
+if __FILE__ == $0
+  if ARGV.length() != 2
+    abort("usage: directory_renamer srcdir destdir")
+  end
+  processFolder(ARGV[0], ARGV[1])
+end

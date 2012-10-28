@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-
-require_relative '../lib/tvillion'
-
-if __FILE__ == $0
-  d = TVillion::Downloader.new('media.lan', '9091')
-  d.add_show(ARGV[0])
-  d.start_download()
-end
