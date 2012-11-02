@@ -29,6 +29,11 @@ class Show < ActiveRecord::Base
     return "S%02dE%02d" % [season, episode]
   end
   
+  def future_download?()
+    return false if season.nil? or episode.nil? or last_season.nil? or last_episode.nil?
+    return (season==last_season and episode<=last_episode)
+  end
+  
   # compare based on next_show_date
   def <=>(other)
     return 0 if !next_show_date && !other.next_show_date

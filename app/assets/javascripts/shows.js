@@ -1,11 +1,10 @@
 $(function() {
-  $('#shows_main_table').tablesorter();
-  $('#search_result_table').tablesorter();
+  $('#shows_main_table').tablesorter({widgets: ['zebra']});
+  $('#search_result_table').tablesorter({widgets: ['zebra']});
 
   $('#shows_search_lookup_form').submit(function() {
     $('#notice').text("");
     $.get(this.action, $(this).serialize(), null, 'script');
-    $('#search_result_table').trigger('update');
     return false;
   });
 

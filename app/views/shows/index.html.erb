@@ -3,6 +3,7 @@
 <table width="100%" class="tablesorter" id="shows_main_table">
   <thead>
   <tr width="100%">
+    <th>Status</th>
     <th>Name</th>
     <th>Season</th>
     <th>Episode</th>
@@ -23,7 +24,8 @@
   
   <tbody>
 <% @shows.each_with_index do |show, index| %>
-  <tr <%= index.odd? ? 'class=odd' : 'class=even' %>>
+  <tr>
+    <td><%= show.future_download? ? 'D' : '' %></td>
     <td><%= show.name %></td>
     <td><%= show.season %></td>
     <td><%= show.episode %></td>
