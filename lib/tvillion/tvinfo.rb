@@ -21,7 +21,7 @@ module TVillion
           end
           return get_show_info(http, result_show.tvrage_id, result_show, current_date)
         rescue Errno::ECONNRESET
-          count += count
+          count += 1
           if count > 3
             raise
           end
@@ -43,7 +43,7 @@ module TVillion
           end
           return find_next_episode(http, result_show.tvrage_id, result_show)
         rescue Errno::ECONNRESET
-          count += count
+          count += 1
           if count > 3
             raise
           end
