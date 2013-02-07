@@ -67,7 +67,7 @@ module TVillion
           end
           return result
         rescue Errno::ECONNRESET
-          count += count
+          count += 1
           if count > 3
             raise
           end
@@ -80,11 +80,11 @@ module TVillion
     def get_show_info(http, id, result_show, current_date=DateTime.now())
       resp = http.request_get(URI.parse(URI.escape(INFO_URL + id.to_s)).request_uri)
       xml_elements = REXML::Document.new(resp.body).root.elements
+      
+      return result_show unless xml_elements["name"] and xml_elements["image"].text and xml_elements["airtime"] and xml_elements["timezone"] and xml_elements["runtime"]
+      
       result_show.name = xml_elements["name"].text
       result_show.image_url = xml_elements["image"].text
-      
-      return result_show unless xml_elements["airtime"] and xml_elements["timezone"] and xml_elements["runtime"]
-      
       airtime = xml_elements["airtime"].text
       timezone = xml_elements["timezone"].text
       result_show.runtime = xml_elements["runtime"].text.to_i
