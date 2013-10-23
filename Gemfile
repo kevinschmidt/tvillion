@@ -7,6 +7,7 @@ gem 'jquery-tablesorter'
 gem 'sqlite3'
 gem "activesupport", ">= 3.2.6"
 gem 'delayed_job_active_record'
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
