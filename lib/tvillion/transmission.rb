@@ -20,28 +20,8 @@ module TVillion
         end
         payload = build_request("torrent-add", arguments)
         puts "trying torrent add request with payload " + payload
-        
-        request = Net::HTTP::Post.new(@uri.request_uri, {'Content-Type' =>'application/json'})
-        request.body = payload
-        Net::HTTP.new(@uri.hostname, @uri.port).start do |http|
-          begin
-            response = http.request(request)
-          rescue Timeout::Error
-            raise "timeout error occurred on request"
-          end
-          if response.is_a?(Net::HTTPConflict)
-            session_id = response['x-transmission-session-id']
-          else
-            raise "did not get 409 on first request"
-          end
-          request['x-transmission-session-id'] = session_id
-          response = http.request(request)
-          if response.is_a?(Net::HTTPSuccess)
-            puts "response for torrent add request is " + response.body
-          else
-            raise "did not get 200 on second request"
-          end
-        end
+        response = send_request(payload)
+        puts "response for torrent add request is " + response.body
       end
   
       private
@@ -50,6 +30,30 @@ module TVillion
             return {'method' => method}.to_json
           else
             return {'method' => method, 'arguments' => arguments }.to_json
+          end
+        end
+
+        def send_request(payload)
+          request = Net::HTTP::Post.new(@uri.request_uri, {'Content-Type' =>'application/json'})
+          request.body = payload
+          Net::HTTP.new(@uri.hostname, @uri.port).start do |http|
+            begin
+              response = http.request(request)
+            rescue Timeout::Error
+              raise "timeout error occurred on request"
+            end
+            if response.is_a?(Net::HTTPConflict)
+              session_id = response['x-transmission-session-id']
+            else
+              raise "did not get 409 on first request"
+            end
+            request['x-transmission-session-id'] = session_id
+            response = http.request(request)
+            if response.is_a?(Net::HTTPSuccess)
+              return response
+            else
+              raise "did not get 200 on second request"
+            end
           end
         end
     end

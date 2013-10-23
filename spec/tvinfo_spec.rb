@@ -18,12 +18,16 @@ describe TVillion::TvInfo do
     end
     
     it "should parse the search xml and get Futurama as a result" do
+      net_http = double("net_http").as_null_object
+      Net::HTTP.should_receive(:new).and_return(net_http)
+      net_http.should_receive(:start).and_yield(@http)
+      
       @http.should_receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::SEARCH_URL + "Futurama")).request_uri).once
       @resp.stub(:body).and_return(File.open("spec/data/futurama_show_search.xml", "r").read)
       @resp.should_receive(:body).once
       
-      id = @tvinfo.get_show_id(@http, "Futurama")
-      id.should eq(3628)
+      id = @tvinfo.search_show("Futurama")
+      id.should eq(3628 => "Futurama")
     end
     
     it "should parse the info xml and get detail info about Futurama" do
@@ -41,13 +45,13 @@ describe TVillion::TvInfo do
       net_http = double("net_http").as_null_object
       Net::HTTP.should_receive(:new).and_return(net_http)
       net_http.should_receive(:start).and_yield(@http)
-    
-      @http.should_receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::SEARCH_URL + "Futurama")).request_uri).once
+      
       @http.should_receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL + "3628")).request_uri).once
-      @resp.stub(:body).and_return(File.open("spec/data/futurama_show_search.xml", "r").read, File.open("spec/data/futurama_show_info.xml", "r").read)
-      @resp.should_receive(:body).twice
+      @resp.stub(:body).and_return(File.open("spec/data/futurama_show_info.xml", "r").read)
+      @resp.should_receive(:body).once
       
       show = ShowTest.new
+      show.tvrage_id = 3628
       show.name = "Futurama"
       @tvinfo.generate_show(show, current_date=DateTime.parse("2012-08-27 13:41"))
       check_show_futurama(show)
