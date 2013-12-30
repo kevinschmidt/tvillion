@@ -11,6 +11,7 @@ module TVillion
     INFO_URL = "http://services.tvrage.com/feeds/full_show_info.php?sid="
     
     def generate_show(result_show, current_date=DateTime.now())
+      puts "getting tv info for show #{result_show.name}"
       http_request = Net::HTTP.new(INFO_HOST, INFO_PORT)
       http_request.read_timeout = 500
       http_request.start do |http|

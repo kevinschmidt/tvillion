@@ -19,9 +19,9 @@ module TVillion
       end
       return nil
     end
-    
+
     FENOPY_URL = "http://unblockfenopy.eu/module/search/api.php?keyword=%s&sort=relevancy&format=json&limit=10&category=78"
-    
+
     def search_fenopy(search_string)
       resp = Net::HTTP.get_response(URI.parse(URI.escape(FENOPY_URL % search_string)))
       data = resp.body
