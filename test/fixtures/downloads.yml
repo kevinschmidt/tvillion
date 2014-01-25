@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  show_id: 1
+  season: 1
+  episode: 1
+  download_id: MyString
+  status: 1
+  progress: 1.5
+
+two:
+  show_id: 1
+  season: 1
+  episode: 1
+  download_id: MyString
+  status: 1
+  progress: 1.5
