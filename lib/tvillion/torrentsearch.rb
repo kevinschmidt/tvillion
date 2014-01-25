@@ -1,5 +1,6 @@
 require 'json'
 require 'net/http'
+require 'cgi'
 
 module TVillion
   module TorrentSearch
@@ -27,7 +28,7 @@ module TVillion
       data = resp.body
       result = JSON.parse(data)
       if not result.empty?
-        return result[0]['magnet']
+        return CGI.unescapeHTML(result[0]['magnet'])
       end
       return nil
     end
