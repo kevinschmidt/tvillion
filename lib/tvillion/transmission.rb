@@ -22,6 +22,25 @@ module TVillion
         puts "trying torrent add request with payload " + payload
         response = send_request(payload)
         puts "response for torrent add request is " + response.body
+        parse_add_response(response.body)
+      end
+
+      def check_torrent(id)
+        arguments = { "id" => id }
+        payload = build_request("torrent-check", arguments)
+        puts "trying torrent check request with payload " + payload
+        response = send_request(payload)
+        puts "response for torrent check request is " + response.body
+        parse_check_response(response.body)
+      end
+
+      def remove_torrent(id)
+        arguments = { "id" => id }
+        payload = build_request("torrent-remove", arguments)
+        puts "trying torrent check request with payload " + payload
+        response = send_request(payload)
+        puts "response for torrent remove request is " + response.body
+        parse_remove_response(response.body)
       end
   
       private
@@ -55,6 +74,23 @@ module TVillion
               raise "did not get 200 on second request"
             end
           end
+        end
+
+        def parse_add_response(body)
+          result = JSON.parse(body)
+          if result['result'] == 'success'
+            return result['arguments']['torrent-added']['id']
+          else
+            raise "bad response for add"
+          end
+        end
+
+        def parse_check_response(body)
+
+        end
+
+        def parse_remove_response(body)
+
         end
     end
   end

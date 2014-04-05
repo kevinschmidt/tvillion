@@ -4,6 +4,8 @@ require 'rspec'
 require 'rspec-prof'
 require 'webmock/rspec'
 require 'tvillion'
+require 'webmock/rspec'
+include WebMock
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
