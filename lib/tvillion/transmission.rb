@@ -90,7 +90,11 @@ module TVillion
         end
 
         def parse_remove_response(body)
-
+          result = JSON.parse(body)
+          if result['result'] != 'success'
+            raise "bad response for remove"
+          end
+          true
         end
     end
   end

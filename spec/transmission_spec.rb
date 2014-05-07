@@ -19,6 +19,12 @@ describe TVillion::Transmission do
 
     it "should parse the transmission check response and return proper status"
 
-    it "should parse the transmission remove response and verify"
+    it "should parse the transmission remove response and verify" do
+      stub_request(:post, "http://localhost:9091/transmission/rpc")
+        .with(:headers => { 'x-transmission-session-id' => "tyfhsldlsafa7888" })
+        .to_return(:body => File.open("spec/data/transmission/remove_response.json", "r").read, :status => 200)
+      response = @transmission_client.remove_torrent("4")
+      response.should eq(true)
+    end
   end
 end
