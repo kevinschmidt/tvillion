@@ -3,6 +3,24 @@ require 'net/http'
 
 module TVillion
   module Transmission
+    class StatusResponse
+      attr_accessor :id, :status, :isFinished, :percentDone
+
+      def initialize(id, status, isFinished, percentDone)
+        @id = id
+        @status = status
+        @isFinished = isFinished
+        @percentDone = percentDone
+      end
+
+      def ==(other)
+        return self.id == other.id &&
+          self.status == other.status &&
+          self.isFinished == other.isFinished &&
+          self.percentDone == other.percentDone
+      end
+    end
+
     class Client
       def initialize(host='localhost', port=9091, username=nil, password=nil)
         @uri = URI.parse("http://#{host}:#{port}/transmission/rpc")
@@ -31,7 +49,7 @@ module TVillion
         puts "trying torrent check request with payload " + payload
         response = send_request(payload)
         puts "response for torrent check request is " + response.body
-        parse_check_response(response.body)
+        parse_check_response(response.body, id)
       end
 
       def remove_torrent(id)
@@ -85,8 +103,19 @@ module TVillion
           end
         end
 
-        def parse_check_response(body)
-
+        def parse_check_response(body, id)
+          result = JSON.parse(body)
+          if result['result'] == 'success'
+            torrents = result['arguments']['torrents']
+            torrents.each do |torrent|
+              if torrent['id'] == id
+                return StatusResponse.new(id, torrent['status'], torrent['isFinished'], torrent['percentDone'])
+              end
+            end
+            StatusResponse.new(-1, -1, false, 0.0)
+          else
+            raise "bad response for check"
+          end
         end
 
         def parse_remove_response(body)
