@@ -3,20 +3,36 @@ require 'net/http'
 
 module TVillion
   module Transmission
-    class StatusResponse
-      attr_accessor :id, :status, :isFinished, :percentDone
+    module StatusCode
+      UNKNOWN = 0
+      STOPPED = 1
+      CHECKING = 2
+      DOWNLOADING = 3
+      SEEDING = 4
+      DONE = 5
 
-      def initialize(id, status, isFinished, percentDone)
+      def self.get_from_transmission_status(status, isFinished)
+        return DONE if isFinished
+        return STOPPED if status == 0
+        return CHECKING if status == 1 || status == 2
+        return DOWNLOADING if status == 3 || status == 4 
+        return SEEDING if status == 5 || status == 6
+        return UNKNOWN
+      end
+    end
+
+    class StatusResponse
+      attr_accessor :id, :status, :percentDone
+
+      def initialize(id, status, percentDone)
         @id = id
         @status = status
-        @isFinished = isFinished
         @percentDone = percentDone
       end
 
       def ==(other)
         return self.id == other.id &&
           self.status == other.status &&
-          self.isFinished == other.isFinished &&
           self.percentDone == other.percentDone
       end
     end
@@ -109,10 +125,10 @@ module TVillion
             torrents = result['arguments']['torrents']
             torrents.each do |torrent|
               if torrent['id'] == id
-                return StatusResponse.new(id, torrent['status'], torrent['isFinished'], torrent['percentDone'])
+                return StatusResponse.new(id, StatusCode::get_from_transmission_status(torrent['status'], torrent['isFinished']), torrent['percentDone'])
               end
             end
-            StatusResponse.new(-1, -1, false, 0.0)
+            StatusResponse.new(-1, StatusCode.UNKNOWN, 0.0)
           else
             raise "bad response for check"
           end
