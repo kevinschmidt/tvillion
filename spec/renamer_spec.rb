@@ -43,37 +43,37 @@ describe TVillion::Renamer do
     
     it "should rename just number name" do
       newName = @renamer.normalizeName("Daria - 406 - I Loathe A Parade.mpg")
-      newName.should eq("Daria.S04E06.mpg")
+      expect(newName).to eq("Daria.S04E06.mpg")
     end
     
     it "should rename long name" do
       newName = @renamer.normalizeName("24 Season 1 Episode 10 - 9AM - 10AM.avi")
-      newName.should eq("24.S01E10.avi")
+      expect(newName).to eq("24.S01E10.avi")
     end
     
     it "should rename x number name" do
       newName = @renamer.normalizeName("Gilmore Girls [3x06] - Take the Deviled Eggs....avi")
-      newName.should eq("Gilmore.Girls.S03E06.avi")
+      expect(newName).to eq("Gilmore.Girls.S03E06.avi")
     end
     
     it "should rename standard name" do
       newName = @renamer.normalizeName("Modern Family.S03E18.720p.HDTV.X264-DIMENSION.mkv")
-      newName.should eq("Modern.Family.S03E18.720p.mkv")
+      expect(newName).to eq("Modern.Family.S03E18.720p.mkv")
     end
     
     it "should rename standard name, second version" do
       newName = @renamer.normalizeName("Daria.S01E11.Road Worrier.avi")
-      newName.should eq("Daria.S01E11.avi")
+      expect(newName).to eq("Daria.S01E11.avi")
     end
     
     it "should rename standard name, uppercase" do
       newName = @renamer.normalizeName("DARIA.S01E11.ROAD_WORRIER.avi")
-      newName.should eq("Daria.S01E11.avi")
+      expect(newName).to eq("Daria.S01E11.avi")
     end
     
     it "should rename standard name, complicated" do
       newName = @renamer.normalizeName("gilmore.girls.s02e05.avi")
-      newName.should eq("Gilmore.Girls.S02E05.avi")
+      expect(newName).to eq("Gilmore.Girls.S02E05.avi")
     end
   end
   
@@ -89,10 +89,10 @@ describe TVillion::Renamer do
     it "should rename all filenames" do
       @renamer.processFolder('spec/data/renamer', 'spec/data/renamer_target')
       result = Dir.foreach('spec/data/renamer_target').to_a
-      result.size().should eq(5)
-      result[2].should eq('24.S01E14.avi')
-      result[3].should eq('Daria.S04E06.mpg')
-      result[4].should eq('The.Cleveland.Show.S03E22.720p.mkv')
+      expect(result.size()).to eq(5)
+      expect(result[2]).to eq('24.S01E14.avi')
+      expect(result[3]).to eq('Daria.S04E06.mpg')
+      expect(result[4]).to eq('The.Cleveland.Show.S03E22.720p.mkv')
     end
   end
 end

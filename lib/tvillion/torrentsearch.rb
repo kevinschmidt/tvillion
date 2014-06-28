@@ -1,6 +1,7 @@
 require 'json'
 require 'net/http'
 require 'cgi'
+require "rexml/document"
 
 module TVillion
   module TorrentSearch
@@ -31,6 +32,21 @@ module TVillion
         return CGI.unescapeHTML(result[0]['magnet'])
       end
       return nil
+    end
+
+    KICKASS_URL = "http://kickass.to/usearch/%s/?rss=1"
+
+    def search_kickass(search_string)
+      resp = Net::HTTP.get_response(URI.parse(URI.escape(KICKASS_URL % search_string)))
+      data = resp.body
+
+      begin
+        result = REXML::Document.new(data)
+        return REXML::XPath.first(result, "//channel/item[1]/torrent:magnetURI").text
+      rescue REXML::ParseException => ex
+        puts "Error: #{ex}"
+        return nil
+      end
     end
   end
 end

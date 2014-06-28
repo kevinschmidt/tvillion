@@ -14,7 +14,7 @@ describe TVillion::Transmission do
         .with(:headers => { 'x-transmission-session-id' => "tyfhsldlsafa7888" })
         .to_return(:body => File.open("spec/data/transmission/add_response.json", "r").read, :status => 200)
       response = @transmission_client.add_torrent("magnet:?xt=urn:btih:4759325bd4812b828cd2deac7e1cc135bcf6e02a")
-      response.should eq(4)
+      expect(response).to eq(4)
     end
 
     it "should parse the transmission remove response and verify" do
@@ -22,7 +22,7 @@ describe TVillion::Transmission do
         .with(:headers => { 'x-transmission-session-id' => "tyfhsldlsafa7888" })
         .to_return(:body => File.open("spec/data/transmission/remove_response.json", "r").read, :status => 200)
       response = @transmission_client.remove_torrent(4)
-      response.should eq(true)
+      expect(response).to eq(true)
     end
 
     it "should parse the transmission check response and return status stopped" do
@@ -30,7 +30,7 @@ describe TVillion::Transmission do
         .with(:headers => { 'x-transmission-session-id' => "tyfhsldlsafa7888" })
         .to_return(:body => File.open("spec/data/transmission/get_response_1.json", "r").read, :status => 200)
       response = @transmission_client.check_torrent(2)
-      response.should eq(TVillion::Transmission::StatusResponse.new(2, TVillion::Transmission::StatusCode::STOPPED, 0))
+      expect(response).to eq(TVillion::Transmission::StatusResponse.new(2, TVillion::Transmission::StatusCode::STOPPED, 0))
     end
 
     it "should parse the transmission check response and return status download" do
@@ -38,7 +38,7 @@ describe TVillion::Transmission do
         .with(:headers => { 'x-transmission-session-id' => "tyfhsldlsafa7888" })
         .to_return(:body => File.open("spec/data/transmission/get_response_1.json", "r").read, :status => 200)
       response = @transmission_client.check_torrent(4)
-      response.should eq(TVillion::Transmission::StatusResponse.new(4, TVillion::Transmission::StatusCode::DOWNLOADING, 0.034))
+      expect(response).to eq(TVillion::Transmission::StatusResponse.new(4, TVillion::Transmission::StatusCode::DOWNLOADING, 0.034))
     end
 
     it "should parse the transmission check response and return status waiting" do
@@ -46,7 +46,7 @@ describe TVillion::Transmission do
         .with(:headers => { 'x-transmission-session-id' => "tyfhsldlsafa7888" })
         .to_return(:body => File.open("spec/data/transmission/get_response_2.json", "r").read, :status => 200)
       response = @transmission_client.check_torrent(2)
-      response.should eq(TVillion::Transmission::StatusResponse.new(2, TVillion::Transmission::StatusCode::DOWNLOADING, 0.0))
+      expect(response).to eq(TVillion::Transmission::StatusResponse.new(2, TVillion::Transmission::StatusCode::DOWNLOADING, 0.0))
     end
 
     it "should parse the transmission check response and return status done" do
@@ -54,7 +54,7 @@ describe TVillion::Transmission do
         .with(:headers => { 'x-transmission-session-id' => "tyfhsldlsafa7888" })
         .to_return(:body => File.open("spec/data/transmission/get_response_3.json", "r").read, :status => 200)
       response = @transmission_client.check_torrent(3)
-      response.should eq(TVillion::Transmission::StatusResponse.new(3, TVillion::Transmission::StatusCode::DONE, 1))
+      expect(response).to eq(TVillion::Transmission::StatusResponse.new(3, TVillion::Transmission::StatusCode::DONE, 1))
     end
 
     it "should parse the transmission check response and return status seeding" do
@@ -62,7 +62,7 @@ describe TVillion::Transmission do
         .with(:headers => { 'x-transmission-session-id' => "tyfhsldlsafa7888" })
         .to_return(:body => File.open("spec/data/transmission/get_response_3.json", "r").read, :status => 200)
       response = @transmission_client.check_torrent(4)
-      response.should eq(TVillion::Transmission::StatusResponse.new(4, TVillion::Transmission::StatusCode::SEEDING, 1))
+      expect(response).to eq(TVillion::Transmission::StatusResponse.new(4, TVillion::Transmission::StatusCode::SEEDING, 1))
     end
   end
 end

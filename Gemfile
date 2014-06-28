@@ -1,11 +1,11 @@
 source "http://rubygems.org"
 
 # Add dependencies required to use your gem here.
-gem 'rails', '3.2.16'
+gem 'rails', '3.2.18'
 gem 'jquery-rails'
 gem 'jquery-tablesorter'
 gem 'sqlite3'
-gem "activesupport", ">= 3.2.16"
+gem "activesupport", ">= 3.2.18"
 gem 'delayed_job_active_record'
 gem 'thin'
 
