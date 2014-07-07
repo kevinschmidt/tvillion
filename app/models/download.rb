@@ -10,4 +10,8 @@ class Download < ActiveRecord::Base
   def <=>(other)
     status <=> other.status
   end
+
+  def done?
+    status == TVillion::Transmission::StatusCode::DONE
+  end
 end

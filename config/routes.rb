@@ -2,11 +2,13 @@ TVillion::Application.routes.draw do
   get "jobs/index"
   get "jobs/get_tvinfo"
   get "jobs/schedule_next_download"
+  get "jobs/update_download_status"
 
   resources :shows do
     collection do
       get 'search'
     end
+    get 'downloads', on: :member
   end
 
   get "home/index"

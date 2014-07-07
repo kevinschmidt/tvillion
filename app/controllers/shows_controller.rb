@@ -99,4 +99,13 @@ class ShowsController < ApplicationController
       format.json { render json: @search_result }
     end
   end
+
+  # GET /shows/1/downloads.json
+  def downloads
+    @downloads = Download.where(show_id: params[:id])
+    
+    respond_to do |format|
+      format.json { render json: @downloads }
+    end
+  end
 end

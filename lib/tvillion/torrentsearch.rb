@@ -6,7 +6,7 @@ require "rexml/document"
 module TVillion
   module TorrentSearch
     def get_search_results(search_string)
-      search_fenopy(search_string)
+      search_kickass(search_string)
     end
 
     THORRENTS_URL = "http://thorrents.com/search/%s.json"
