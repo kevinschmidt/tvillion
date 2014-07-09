@@ -60,8 +60,8 @@ module TVillion
       end
 
       def check_torrent(id)
-        arguments = { "id" => id }
-        payload = build_request("torrent-check", arguments)
+        arguments = { "ids" => [ id.to_i ], "fields" => [ "id", "isFinished", "name", "percentDone", "sizeWhenDone", "status" ] }
+        payload = build_request("torrent-get", arguments)
         puts "trying torrent check request with payload " + payload
         response = send_request(payload)
         puts "response for torrent check request is " + response.body
@@ -69,7 +69,7 @@ module TVillion
       end
 
       def remove_torrent(id)
-        arguments = { "id" => id }
+        arguments = { "ids" => [ id.to_i ] }
         payload = build_request("torrent-remove", arguments)
         puts "trying torrent check request with payload " + payload
         response = send_request(payload)
@@ -113,7 +113,11 @@ module TVillion
         def parse_add_response(body)
           result = JSON.parse(body)
           if result['result'] == 'success'
-            return result['arguments']['torrent-added']['id']
+            if result['arguments'].has_key?('torrent-duplicate')
+              return result['arguments']['torrent-duplicate']['id']
+            else
+              return result['arguments']['torrent-added']['id']
+            end
           else
             raise "bad response for add"
           end
@@ -124,11 +128,11 @@ module TVillion
           if result['result'] == 'success'
             torrents = result['arguments']['torrents']
             torrents.each do |torrent|
-              if torrent['id'] == id
-                return StatusResponse.new(id, StatusCode::get_from_transmission_status(torrent['status'], torrent['isFinished']), torrent['percentDone'])
+              if torrent['id'] == id.to_i
+                return StatusResponse.new(id.to_i, StatusCode::get_from_transmission_status(torrent['status'], torrent['isFinished']), torrent['percentDone'])
               end
             end
-            StatusResponse.new(-1, StatusCode.UNKNOWN, 0.0)
+            return StatusResponse.new(id.to_i, StatusCode::UNKNOWN, 0.0)
           else
             raise "bad response for check"
           end
