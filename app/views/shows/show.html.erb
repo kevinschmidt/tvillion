@@ -72,8 +72,8 @@
       <td><%= download.season %></td>
       <td><%= download.episode %></td>
       <td><%= download.download_id %></td>
-      <td><%= download.status %></td>
-      <td><div class="progressbar" percent="<%= download.progress*100 %>"><div class="progress-label"><%= download.progress*100 %>%</div></div></td>
+      <td><%= download.statusName %></td>
+      <td><div class="progressbar" percent="<%= download.progressPercent %>"><div class="progress-label"><%= download.progressPercent %></div></div></td>
     </tr>
     </tbody>
   <% end %>

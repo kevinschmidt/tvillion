@@ -1,3 +1,5 @@
+require 'tvillion/transmission'
+
 class Download < ActiveRecord::Base
   include Comparable
 
@@ -13,5 +15,17 @@ class Download < ActiveRecord::Base
 
   def done?
     status == TVillion::Transmission::StatusCode::DONE
+  end
+
+  def progressPercent
+    if progress.nil?
+      0
+    else
+      progress * 100
+    end
+  end
+
+  def statusName
+    TVillion::Transmission::StatusCode::get_name_from_transmission_status(status)
   end
 end

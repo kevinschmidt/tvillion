@@ -11,6 +11,15 @@ module TVillion
       SEEDING = 4
       DONE = 5
 
+      STATUS_CODE_NAME = {
+        UNKNOWN     => "Unknown",
+        STOPPED     => "Stopped",
+        CHECKING    => "Checking",
+        DOWNLOADING => "Downloading",
+        SEEDING     => "Sedding",
+        DONE        => "Done"
+      }
+
       def self.get_from_transmission_status(status, isFinished)
         return DONE if isFinished
         return STOPPED if status == 0
@@ -18,6 +27,10 @@ module TVillion
         return DOWNLOADING if status == 3 || status == 4 
         return SEEDING if status == 5 || status == 6
         return UNKNOWN
+      end
+
+      def self.get_name_from_transmission_status(status)
+        STATUS_CODE_NAME[status]
       end
     end
 
