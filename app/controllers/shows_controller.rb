@@ -7,6 +7,12 @@ class ShowsController < ApplicationController
   # GET /shows.json
   def index
     @shows = Show.all
+    @shows.each do |show|
+      download = Download.where(show_id: show.id).order("season desc, episode desc").first
+      unless download.nil?
+        show.current_download = download
+      end
+    end
     @shows.sort!
 
     respond_to do |format|
@@ -19,6 +25,7 @@ class ShowsController < ApplicationController
   # GET /shows/1.json
   def show
     @show = Show.find(params[:id])
+    @downloads = Download.where(show_id: params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -97,6 +104,15 @@ class ShowsController < ApplicationController
       format.js
       format.html
       format.json { render json: @search_result }
+    end
+  end
+
+  # GET /shows/1/downloads.json
+  def downloads
+    @downloads = Download.where(show_id: params[:id])
+    
+    respond_to do |format|
+      format.json { render json: @downloads }
     end
   end
 end

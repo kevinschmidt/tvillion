@@ -1,0 +1,31 @@
+{
+    "arguments": {
+        "torrents": [
+            {
+                "id": 1,
+                "isFinished": false,
+                "name": "Show One File",
+                "percentDone": 0.0385,
+                "sizeWhenDone": 292449497,
+                "status": 4
+            },
+            {
+                "id": 2,
+                "isFinished": false,
+                "name": "Show Two File",
+                "percentDone": 0,
+                "sizeWhenDone": 292449497,
+                "status": 3
+            },
+            {
+                "id": 3,
+                "isFinished": false,
+                "name": "Show Three File",
+                "percentDone": 0.4891,
+                "sizeWhenDone": 292449497,
+                "status": 4
+            }
+        ]
+    },
+    "result": "success"
+}

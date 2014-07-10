@@ -1,11 +1,12 @@
 source "http://rubygems.org"
 
 # Add dependencies required to use your gem here.
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.18'
 gem 'jquery-rails'
 gem 'jquery-tablesorter'
+gem 'jquery-ui-rails'
 gem 'sqlite3'
-gem "activesupport", ">= 3.2.6"
+gem "activesupport", ">= 3.2.18"
 gem 'delayed_job_active_record'
 gem 'thin'
 
@@ -31,4 +32,8 @@ group :development do
   gem "bundler", ">= 1.0.0"
   gem "jeweler", "~> 1.8.4"
   gem "simplecov", ">= 0"
+end
+
+group :test do
+  gem 'webmock', ">= 1.17.1"
 end

@@ -1,3 +1,13 @@
 // Place all the styles related to the Shows controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ui-progressbar {
+  position: relative; }
+
+.progress-label {
+  position: absolute;
+  left: 45%;
+  top: 4px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #fff; }

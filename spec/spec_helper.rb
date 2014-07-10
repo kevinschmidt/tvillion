@@ -3,6 +3,8 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rspec'
 require 'rspec-prof'
 require 'tvillion'
+require 'webmock/rspec'
+include WebMock::API
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.

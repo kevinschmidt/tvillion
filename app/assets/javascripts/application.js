@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-tablesorter
+//= require jquery-ui/progressbar
 //= require_tree .

@@ -1,0 +1,39 @@
+{
+    "arguments": {
+        "torrents": [
+            {
+                "id": 1,
+                "isFinished": true,
+                "name": "Show One File",
+                "percentDone": 1,
+                "sizeWhenDone": 980201882,
+                "status": 0
+            },
+            {
+                "id": 2,
+                "isFinished": false,
+                "name": "Show Two File",
+                "percentDone": 0.0793,
+                "sizeWhenDone": 1370072986,
+                "status": 0
+            },
+            {
+                "id": 3,
+                "isFinished": true,
+                "name": "Show Three File",
+                "percentDone": 1,
+                "sizeWhenDone": 292449497,
+                "status": 0
+            },
+            {
+                "id": 4,
+                "isFinished": false,
+                "name": "Show Four File",
+                "percentDone": 1,
+                "sizeWhenDone": 462776053,
+                "status": 6
+            }
+        ]
+    },
+    "result": "success"
+}
