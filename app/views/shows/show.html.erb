@@ -53,6 +53,33 @@
   <b>Search Name:</b>
   <%= @show.search_name %>
 </p>
+<% unless @downloads.nil? %>
+<p>
+  <b>Downloads:</b>
+  <table width="100%" class="tablesorter" id="downloads_table">
+    <thead>
+    <tr>
+      <th>Season</th>
+      <th>Episode</th>
+      <th>Transmission ID</th>
+      <th>Status</th>
+      <th>Progress</th>
+    </tr>
+    </thead>
+  <% @downloads.each do |download| %>
+    <tbody>
+    <tr>
+      <td><%= download.season %></td>
+      <td><%= download.episode %></td>
+      <td><%= download.download_id %></td>
+      <td><%= download.status %></td>
+      <td><div class="progressbar" percent="<%= download.progress*100 %>"><div class="progress-label"><%= download.progress*100 %>%</div></div></td>
+    </tr>
+    </tbody>
+  <% end %>
+  </table>
+</p>
+<% end %>
 
 <%= link_to 'Edit', edit_show_path(@show) %> |
 <%= link_to 'Back', shows_path %>

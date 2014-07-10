@@ -4,6 +4,7 @@ source "http://rubygems.org"
 gem 'rails', '3.2.18'
 gem 'jquery-rails'
 gem 'jquery-tablesorter'
+gem 'jquery-ui-rails'
 gem 'sqlite3'
 gem "activesupport", ">= 3.2.18"
 gem 'delayed_job_active_record'

@@ -19,6 +19,7 @@ class ShowsController < ApplicationController
   # GET /shows/1.json
   def show
     @show = Show.find(params[:id])
+    @downloads = Download.where(show_id: params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require jquery-tablesorter/theme.default
+ *= require jquery-ui/progressbar
  *= require_tree .
  */

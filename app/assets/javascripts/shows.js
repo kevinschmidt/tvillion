@@ -1,6 +1,7 @@
-$(function() {
+$( document ).ready(function() {
   $('#shows_main_table').tablesorter({widgets: ['zebra']});
   $('#search_result_table').tablesorter({widgets: ['zebra']});
+  $('#downloads_table').tablesorter({widgets: ['zebra']});
 
   $('#shows_search_lookup_form').submit(function() {
     $('#notice').text("");
@@ -25,5 +26,12 @@ $(function() {
     $(this).show();
   }).ajaxStop(function() {
     $(this).hide();
+  });
+
+  $("div.progressbar").each (function () {
+    var element = this;
+    $(element).progressbar({
+      value: parseInt($(element).attr("percent"))
+    });
   });
 });
