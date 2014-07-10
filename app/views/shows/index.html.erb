@@ -15,7 +15,7 @@
     <th>Next Show Date</th>
     <th>Next Season</th>
     <th>Next Episode</th>
-    <th>Search Name</th>
+    <th>Download</th>
     <th></th>
     <th></th>
     <th></th>
@@ -37,7 +37,9 @@
     <td><%= show.next_show_date %></td>
     <td><%= show.next_season %></td>
     <td><%= show.next_episode %></td>
-    <td><%= show.search_name %></td>
+    <td><%= unless show.current_download.nil?
+      '[%s,%s] %.0f%' % [show.current_download.season, show.current_download.episode, show.current_download.progressPercent]
+    end %></td>
     <td><%= link_to 'Show', show %></td>
     <td><%= link_to 'Edit', edit_show_path(show) %></td>
     <td><%= link_to 'Destroy', show, method: :delete, data: { confirm: 'Are you sure?' } %></td>

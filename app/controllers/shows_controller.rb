@@ -7,6 +7,12 @@ class ShowsController < ApplicationController
   # GET /shows.json
   def index
     @shows = Show.all
+    @shows.each do |show|
+      download = Download.where(show_id: show.id).order("season desc, episode desc").first
+      unless download.nil?
+        show.current_download = download
+      end
+    end
     @shows.sort!
 
     respond_to do |format|
