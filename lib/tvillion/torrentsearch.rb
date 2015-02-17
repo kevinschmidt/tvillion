@@ -34,7 +34,7 @@ module TVillion
       return nil
     end
 
-    KICKASS_URL = "http://kickass.so/usearch/%s/?rss=1&field=seeders&sorder=desc"
+    KICKASS_URL = "http://kickass.to/usearch/%s/?rss=1&field=seeders&sorder=desc"
 
     def search_kickass(search_string)
       resp = Net::HTTP.get_response(URI.parse(URI.escape(KICKASS_URL % search_string)))

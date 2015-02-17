@@ -55,7 +55,7 @@ class JobsController < ApplicationController
 
   def update_download_status
     @transmission_client = TVillion::Transmission::Client.new('media.lan', '9091')
-    @downloads = Download.where(status <> TVillion::Transmission::StatusCode::DONE)
+    @downloads = Download.where(status != TVillion::Transmission::StatusCode::DONE)
     @downloads.each do |download|
       unless download.done? 
         @status_response = @transmission_client.check_torrent(download.download_id)
