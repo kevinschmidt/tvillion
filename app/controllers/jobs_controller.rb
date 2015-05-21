@@ -17,7 +17,7 @@ class JobsController < ApplicationController
   end
   
   def schedule_next_download
-    @transmission_client = TVillion::Transmission::Client.new('media.lan', '9091')
+    @transmission_client = TVillion::Transmission::Client.new('localhost', '9091')
     @shows = Show.all
     @shows.each do |show|
       if show.season.nil? or show.episode.nil?
@@ -54,7 +54,7 @@ class JobsController < ApplicationController
   end
 
   def update_download_status
-    @transmission_client = TVillion::Transmission::Client.new('media.lan', '9091')
+    @transmission_client = TVillion::Transmission::Client.new('localhost', '9091')
     @downloads = Download.where(status != TVillion::Transmission::StatusCode::DONE)
     @downloads.each do |download|
       unless download.done? 
