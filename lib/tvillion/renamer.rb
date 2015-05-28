@@ -11,7 +11,7 @@ module TVillion
     
     
     def normalizeName(name, show_name=nil)
-      match_data = matchName(name)
+      match_data = matchName(name, show_name)
       symbolized_data = match_data.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
       if symbolized_data[:is720p]
         return OUTPUT_FORMAT_HD % symbolized_data
