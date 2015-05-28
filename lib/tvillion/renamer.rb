@@ -43,6 +43,7 @@ module TVillion
         end
         if key == 'showname' && show_name
           mod_value = show_name
+        end
         result[key] = mod_value
       end
       result['is720p'] = is720p

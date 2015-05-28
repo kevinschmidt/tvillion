@@ -4,8 +4,12 @@ require_relative '../lib/tvillion'
 include TVillion::Renamer
 
 if __FILE__ == $0
-  if ARGV.length() != 2
-    abort("usage: directory_renamer srcdir destdir")
+  if ARGV.length() < 2 || ARGV.length() > 3
+    abort("usage: directory_renamer srcdir destdir [showname]")
   end
-  processFolder(ARGV[0], ARGV[1])
+  if ARGV.length == 2
+    processFolder(ARGV[0], ARGV[1])
+  else
+  	processFolder(ARGV[0], ARGV[1], ARGV[2])
+  end
 end
