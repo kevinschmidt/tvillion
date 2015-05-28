@@ -10,7 +10,7 @@ module TVillion
     OUTPUT_FORMAT_HD = '%{showname}.S%{seasonnum}E%{episodenum}.720p.%{fileend}'
     
     
-    def normalizeName(name)
+    def normalizeName(name, show_name=nil)
       match_data = matchName(name)
       symbolized_data = match_data.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
       if symbolized_data[:is720p]
@@ -20,7 +20,7 @@ module TVillion
       end
     end
     
-    def matchName(name)
+    def matchName(name, show_name=nil)
       matchResults = REGEX_ARRAY.chunk {|regex| regex.match(name)}
       if matchResults.none?
         raise "unsupported file name: " + name
@@ -41,6 +41,8 @@ module TVillion
         if key == 'fileend'
           mod_value.downcase!()
         end
+        if key == 'showname' && show_name
+          mod_value = show_name
         result[key] = mod_value
       end
       result['is720p'] = is720p
@@ -48,11 +50,11 @@ module TVillion
     end
     
     
-    def processFolder(source_folder, target_folder)
+    def processFolder(source_folder, target_folder, show_name=nil)
       FileUtils.mkdir_p(target_folder)
       Dir.glob(source_folder+"/*.{avi,AVI,mpg,MPG,mp4,MP4,mkv,MKV}") do |filename|
         filename.slice!(0..filename.rindex('/'))
-        new_file = target_folder+"/"+normalizeName(filename)
+        new_file = target_folder+"/"+normalizeName(filename, show_name)
         FileUtils.cp(source_folder+"/"+filename, new_file)
         puts "Copied #{filename} to #{new_file}"
       end
