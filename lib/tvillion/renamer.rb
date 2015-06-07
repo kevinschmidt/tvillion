@@ -2,7 +2,7 @@ require 'fileutils'
 
 module TVillion
   module Renamer
-    STANDARD = Regexp.new('^(?<showname>.*)[ ._-][Ss](?<seasonnum>\d{1,2})[ ._-]?[Ee](?<episodenum>\d{1,2})[ ._-]?(?<episodename>.*)[.](?<fileend>\w{3,4})$')
+    STANDARD = Regexp.new('^(?<showname>.*)[ ._-]*[Ss](?<seasonnum>\d{1,2})[ ._-]?[Ee](?<episodenum>\d{1,2})[ ._-]?(?<episodename>.*)[.](?<fileend>\w{3,4})$')
     LONG_NAMES = Regexp.new('^(?<showname>.*)[Ss]eason[ .](?<seasonnum>[0-9]{1,2})[ .][Ee]pisode[ .](?<episodenum>\d{2})(?<episodename>.*)[.](?<fileend>\w{3,4})')
     JUST_NUMBERS = Regexp.new('^(?<showname>.*)(?<seasonnum>[0-9]{1,2})[xX]?(?<episodenum>\d{2})(?<episodename>.*)[.](?<fileend>\w{3,4})$')
     REGEX_ARRAY = [STANDARD, LONG_NAMES, JUST_NUMBERS]
@@ -10,8 +10,8 @@ module TVillion
     OUTPUT_FORMAT_HD = '%{showname}.S%{seasonnum}E%{episodenum}.720p.%{fileend}'
     
     
-    def normalizeName(name, show_name=nil)
-      match_data = matchName(name, show_name)
+    def normalizeName(name, show_name=nil, season_num=nil)
+      match_data = matchName(name, show_name, season_num)
       symbolized_data = match_data.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
       if symbolized_data[:is720p]
         return OUTPUT_FORMAT_HD % symbolized_data
@@ -20,7 +20,7 @@ module TVillion
       end
     end
     
-    def matchName(name, show_name=nil)
+    def matchName(name, show_name=nil, season_num=nil)
       matchResults = REGEX_ARRAY.chunk {|regex| regex.match(name)}
       if matchResults.none?
         raise "unsupported file name: " + name
@@ -34,6 +34,9 @@ module TVillion
         is_number = true if Fixnum(mod_value) rescue false
         if ['seasonnum', 'episodenum'].include?(key)
           mod_value = mod_value.rjust(2, '0')
+        end
+        if key == 'seasonnum' && season_num
+          mod_value = season_num
         end
         if key == 'episodename' && value.index(/720[pP]/)
           is720p = true
@@ -51,11 +54,11 @@ module TVillion
     end
     
     
-    def processFolder(source_folder, target_folder, show_name=nil)
+    def processFolder(source_folder, target_folder, show_name=nil, season_num=nil)
       FileUtils.mkdir_p(target_folder)
       Dir.glob(source_folder+"/*.{avi,AVI,mpg,MPG,mp4,MP4,mkv,MKV}") do |filename|
         filename.slice!(0..filename.rindex('/'))
-        new_file = target_folder+"/"+normalizeName(filename, show_name)
+        new_file = target_folder+"/"+normalizeName(filename, show_name, season_num)
         FileUtils.cp(source_folder+"/"+filename, new_file)
         puts "Copied #{filename} to #{new_file}"
       end

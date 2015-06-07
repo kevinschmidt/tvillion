@@ -69,6 +69,36 @@ describe TVillion::Renamer do
       expect(matchData["fileend"]).to eq("avi")
       expect(matchData["is720p"]).to eq(false)
     end
+    
+    it "should parse name without showname" do
+      matchData = @renamer.matchName("S01E01_Midnight_on_the_Firing_Line.mkv")
+      expect(matchData["showname"]).to eq("")
+      expect(matchData["seasonnum"]).to eq("01")
+      expect(matchData["episodenum"]).to eq("01")
+      expect(matchData["episodename"]).to eq("Midnight.On.The.Firing.Line")
+      expect(matchData["fileend"]).to eq("mkv")
+      expect(matchData["is720p"]).to eq(false)
+    end
+    
+    it "should parse name without showname, show name overwrite" do
+      matchData = @renamer.matchName("S01E01_Midnight_on_the_Firing_Line.mkv", show_name="Babylon.5")
+      expect(matchData["showname"]).to eq("Babylon.5")
+      expect(matchData["seasonnum"]).to eq("01")
+      expect(matchData["episodenum"]).to eq("01")
+      expect(matchData["episodename"]).to eq("Midnight.On.The.Firing.Line")
+      expect(matchData["fileend"]).to eq("mkv")
+      expect(matchData["is720p"]).to eq(false)
+    end
+    
+    it "should parse name without showname and season, show name and season overwrite" do
+      matchData = @renamer.matchName("002 - The Stakeout - [DVD].avi", show_name="Babylon.5", season_num="01")
+      expect(matchData["showname"]).to eq("Babylon.5")
+      expect(matchData["seasonnum"]).to eq("01")
+      expect(matchData["episodenum"]).to eq("02")
+      expect(matchData["episodename"]).to eq("The.Stakeout...[Dvd")
+      expect(matchData["fileend"]).to eq("avi")
+      expect(matchData["is720p"]).to eq(false)
+    end
   end
   
   context "normalizing" do
@@ -99,6 +129,11 @@ describe TVillion::Renamer do
     it "should rename standard name, show name overwrite" do
       newName = @renamer.normalizeName("Modern Family.S03E18.720p.HDTV.X264-DIMENSION.mkv", show_name="Good.Comedy")
       expect(newName).to eq("Good.Comedy.S03E18.720p.mkv")
+    end
+    
+    it "should rename standard name, show name and season number overwrite" do
+      newName = @renamer.normalizeName("Modern Family.S03E18.720p.HDTV.X264-DIMENSION.mkv", show_name="Good.Comedy", season_num="07")
+      expect(newName).to eq("Good.Comedy.S07E18.720p.mkv")
     end
     
     it "should rename standard name, second version" do
