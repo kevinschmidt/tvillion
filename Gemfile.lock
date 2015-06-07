@@ -198,3 +198,6 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   webmock (>= 1.17.1)
   yard (>= 0.7)
+
+BUNDLED WITH
+   1.10.2

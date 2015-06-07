@@ -12,27 +12,62 @@ describe TVillion::Renamer do
     
     it "should parse just number name" do
       matchData = @renamer.matchName("Daria - 406 - I Loathe A Parade.mpg")
-      puts matchData
+      expect(matchData["showname"]).to eq("Daria")
+      expect(matchData["seasonnum"]).to eq("04")
+      expect(matchData["episodenum"]).to eq("06")
+      expect(matchData["episodename"]).to eq("I.Loathe.A.Parade")
+      expect(matchData["fileend"]).to eq("mpg")
+      expect(matchData["is720p"]).to eq(false)
     end
     
     it "should parse long name" do
       matchData = @renamer.matchName("24 Season 1 Episode 10 - 9AM - 10AM.avi")
-      puts matchData
+      expect(matchData["showname"]).to eq("24")
+      expect(matchData["seasonnum"]).to eq("01")
+      expect(matchData["episodenum"]).to eq("10")
+      expect(matchData["episodename"]).to eq("9.Am...10.Am")
+      expect(matchData["fileend"]).to eq("avi")
+      expect(matchData["is720p"]).to eq(false)
     end
     
     it "should parse x number name" do
       matchData = @renamer.matchName("Gilmore Girls [3x06] - Take the Deviled Eggs....avi")
-      puts matchData
+      expect(matchData["showname"]).to eq("Gilmore.Girls")
+      expect(matchData["seasonnum"]).to eq("03")
+      expect(matchData["episodenum"]).to eq("06")
+      expect(matchData["episodename"]).to eq("Take.The.Deviled.Eggs")
+      expect(matchData["fileend"]).to eq("avi")
+      expect(matchData["is720p"]).to eq(false)
     end
     
     it "should parse standard name" do
       matchData = @renamer.matchName("Modern Family.S03E18.720p.HDTV.X264-DIMENSION.mkv")
-      puts matchData
+      expect(matchData["showname"]).to eq("Modern.Family")
+      expect(matchData["seasonnum"]).to eq("03")
+      expect(matchData["episodenum"]).to eq("18")
+      expect(matchData["episodename"]).to eq("720p.Hdtv.X264.Dimension")
+      expect(matchData["fileend"]).to eq("mkv")
+      expect(matchData["is720p"]).to eq(true)
+    end
+    
+    it "should parse standard name, show name overwrite" do
+      matchData = @renamer.matchName("Modern Family.S03E18.720p.HDTV.X264-DIMENSION.mkv", show_name="Good.Comedy")
+      expect(matchData["showname"]).to eq("Good.Comedy")
+      expect(matchData["seasonnum"]).to eq("03")
+      expect(matchData["episodenum"]).to eq("18")
+      expect(matchData["episodename"]).to eq("720p.Hdtv.X264.Dimension")
+      expect(matchData["fileend"]).to eq("mkv")
+      expect(matchData["is720p"]).to eq(true)
     end
     
     it "should parse standard name, complicated" do
       matchData = @renamer.matchName("gilmore.girls.s02e05.avi")
-      puts matchData
+      expect(matchData["showname"]).to eq("Gilmore.Girls")
+      expect(matchData["seasonnum"]).to eq("02")
+      expect(matchData["episodenum"]).to eq("05")
+      expect(matchData["episodename"]).to eq("")
+      expect(matchData["fileend"]).to eq("avi")
+      expect(matchData["is720p"]).to eq(false)
     end
   end
   
@@ -59,6 +94,11 @@ describe TVillion::Renamer do
     it "should rename standard name" do
       newName = @renamer.normalizeName("Modern Family.S03E18.720p.HDTV.X264-DIMENSION.mkv")
       expect(newName).to eq("Modern.Family.S03E18.720p.mkv")
+    end
+    
+    it "should rename standard name, show name overwrite" do
+      newName = @renamer.normalizeName("Modern Family.S03E18.720p.HDTV.X264-DIMENSION.mkv", show_name="Good.Comedy")
+      expect(newName).to eq("Good.Comedy.S03E18.720p.mkv")
     end
     
     it "should rename standard name, second version" do
