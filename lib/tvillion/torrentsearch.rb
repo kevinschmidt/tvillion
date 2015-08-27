@@ -42,7 +42,7 @@ module TVillion
       data = resp.body
 
       begin
-        raise "got a bad response from kickass: " + resp if resp.code != "200"
+        raise "got a bad response from kickass: " + resp.message if resp.code != "200"
         result = REXML::Document.new(data)
         return REXML::XPath.first(result, "//channel/item[1]/torrent:magnetURI").text
       rescue => ex
