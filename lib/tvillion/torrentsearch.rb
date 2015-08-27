@@ -41,6 +41,7 @@ module TVillion
       data = resp.body
 
       begin
+        data.encode!('UTF-8', 'UTF-8', :invalid => :replace)
         result = REXML::Document.new(data)
         return REXML::XPath.first(result, "//channel/item[1]/torrent:magnetURI").text
       rescue REXML::ParseException => ex
