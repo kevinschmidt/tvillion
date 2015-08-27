@@ -5,7 +5,8 @@ module TVillion
     STANDARD = Regexp.new('^(?<showname>.*)[ ._-]*[Ss](?<seasonnum>\d{1,2})[ ._-]?[Ee](?<episodenum>\d{1,2})[ ._-]?(?<episodename>.*)[.](?<fileend>\w{3,4})$')
     LONG_NAMES = Regexp.new('^(?<showname>.*)[Ss]eason[ .](?<seasonnum>[0-9]{1,2})[ .][Ee]pisode[ .](?<episodenum>\d{2})(?<episodename>.*)[.](?<fileend>\w{3,4})')
     JUST_NUMBERS = Regexp.new('^(?<showname>.*)(?<seasonnum>[0-9]{1,2})[xX]?(?<episodenum>\d{2})(?<episodename>.*)[.](?<fileend>\w{3,4})$')
-    REGEX_ARRAY = [STANDARD, LONG_NAMES, JUST_NUMBERS]
+    JUST_EPISODE = Regexp.new('^Ep[. ]*(?<episodenum>\d{2})(?<episodename>.*)[.](?<fileend>\w{3,4})$')
+    REGEX_ARRAY = [STANDARD, LONG_NAMES, JUST_NUMBERS, JUST_EPISODE]
     OUTPUT_FORMAT_SD = '%{showname}.S%{seasonnum}E%{episodenum}.%{fileend}'
     OUTPUT_FORMAT_HD = '%{showname}.S%{seasonnum}E%{episodenum}.720p.%{fileend}'
     
@@ -35,21 +36,21 @@ module TVillion
         if ['seasonnum', 'episodenum'].include?(key)
           mod_value = mod_value.rjust(2, '0')
         end
-        if key == 'seasonnum' && season_num
-          mod_value = season_num
-        end
         if key == 'episodename' && value.index(/720[pP]/)
           is720p = true
         end
         if key == 'fileend'
           mod_value.downcase!()
         end
-        if key == 'showname' && show_name
-          mod_value = show_name
-        end
         result[key] = mod_value
       end
       result['is720p'] = is720p
+      if season_num
+        result['seasonnum'] = season_num
+      end
+      if show_name
+        result['showname'] = show_name
+      end
       return result
     end
     

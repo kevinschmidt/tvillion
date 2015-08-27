@@ -99,6 +99,16 @@ describe TVillion::Renamer do
       expect(matchData["fileend"]).to eq("avi")
       expect(matchData["is720p"]).to eq(false)
     end
+    
+    it "should parse name without showname and season, episode format, show name and season overwrite" do
+      matchData = @renamer.matchName("Ep. 10 - Jet.mkv", show_name="Avatar.The.Last.Airbender", season_num="01")
+      expect(matchData["showname"]).to eq("Avatar.The.Last.Airbender")
+      expect(matchData["seasonnum"]).to eq("01")
+      expect(matchData["episodenum"]).to eq("10")
+      expect(matchData["episodename"]).to eq("Jet")
+      expect(matchData["fileend"]).to eq("mkv")
+      expect(matchData["is720p"]).to eq(false)
+    end
   end
   
   context "normalizing" do
