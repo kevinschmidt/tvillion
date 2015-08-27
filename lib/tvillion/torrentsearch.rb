@@ -37,11 +37,11 @@ module TVillion
     KICKASS_URL = "http://kat.cr/usearch/%s/?rss=1&field=seeders&sorder=desc"
 
     def search_kickass(search_string)
-      resp = Net::HTTP.get_response(URI.parse(URI.escape(KICKASS_URL % search_string)))
+      uri = URI.parse(URI.escape(KICKASS_URL % search_string))
+      resp = Net::HTTP.new(uri.host, uri.port).get(uri.request_uri)
       data = resp.body
 
       begin
-        data.encode!('UTF-8', 'UTF-8', :invalid => :replace)
         result = REXML::Document.new(data)
         return REXML::XPath.first(result, "//channel/item[1]/torrent:magnetURI").text
       rescue REXML::ParseException => ex
