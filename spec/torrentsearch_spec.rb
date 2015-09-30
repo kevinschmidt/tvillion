@@ -8,7 +8,10 @@ describe TVillion::TorrentSearch do
   context "parsing" do
     before(:each) do
       @resp = double("resp")
+      @http = double("net_http").as_null_object
       allow(Net::HTTP).to receive(:get_response).and_return(@resp)
+      allow(Net::HTTP).to receive(:new).and_return(@http)
+      allow(@http).to receive(:get).and_return(@resp)
       @torrent_search = TorrentSearchTest.new
     end
 
@@ -31,7 +34,8 @@ describe TVillion::TorrentSearch do
     end
 
     it "should parse kickass search rss and get a proper torrent url as a result" do
-      expect(Net::HTTP).to receive(:get_response).with(URI.parse(URI.escape(TVillion::TorrentSearch::KICKASS_URL % "Modern Family 720p S05E23"))).once
+      expect(@http).to receive(:get).with(URI.parse(URI.escape(TVillion::TorrentSearch::KICKASS_URL % "Modern Family 720p S05E23")).request_uri).once
+      allow(@resp).to receive(:code).and_return("200")
       allow(@resp).to receive(:body).and_return(File.open("spec/data/modern_family_torrent_search_kickass.xml", "r").read)
       expect(@resp).to receive(:body).once
 

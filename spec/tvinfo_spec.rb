@@ -12,158 +12,117 @@ describe TVillion::TvInfo do
   context "parsing" do
     before(:each) do
       @resp = double("resp")
-      @http = double("http")
-      allow(@http).to receive(:request_get).and_return(@resp)
+      @http = double("net_http").as_null_object
+      allow(Net::HTTP).to receive(:new).and_return(@http)
+      allow(@http).to receive(:get).and_return(@resp)
       @tvinfo = TvInfoTest.new
     end
     
-    it "should parse the search xml and get Futurama as a result" do
-      net_http = double("net_http").as_null_object
-      expect(Net::HTTP).to receive(:new).and_return(net_http)
-      expect(net_http).to receive(:start).and_yield(@http)
-      
-      expect(@http).to receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::SEARCH_URL + "Futurama")).request_uri).once
-      allow(@resp).to receive(:body).and_return(File.open("spec/data/futurama_show_search.xml", "r").read)
+    it "should parse the search result and get several shows as a result" do
+      expect(@http).to receive(:get).with(URI.parse(URI.escape(TVillion::TvInfo::SEARCH_URL % "shield")).request_uri).once
+      allow(@resp).to receive(:code).and_return("200")
+      allow(@resp).to receive(:body).and_return(File.open("spec/data/shield_show_search.json", "r").read)
       expect(@resp).to receive(:body).once
       
-      id = @tvinfo.search_show("Futurama")
-      expect(id).to eq(3628 => "Futurama")
+      ids = @tvinfo.search_show("shield")
+      expect(ids).to eq({
+        1173 => "Child Genius",
+        1439 => "The field of blood",
+        1935 => "Ghost in the Shell: Stand Alone Complex",
+        2164 => "Love Child",
+        2281 => "The Crimson Field",
+        2570 => "Man vs. Child: Chef Showdown",
+        31 => "Marvel's Agents of S.H.I.E.L.D",
+        3445 => "Max & Shred",
+        4615 => "Supervet in the Field",
+        663 => "The Shield"
+      })
     end
-    
-    it "should parse the info xml and get detail info about Futurama" do
-      expect(@http).to receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL + "3628")).request_uri).once
-      allow(@resp).to receive(:body).and_return(File.open("spec/data/futurama_show_info.xml", "r").read)
+   
+    it "should parse the show info json and get detail info about Shield" do
+      expect(@http).to receive(:get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL % "31")).request_uri).once
+      expect(@http).to receive(:get).with(URI.parse(URI.escape("http://api.tvmaze.com/episodes/153398")).request_uri).once
+      expect(@http).to receive(:get).with(URI.parse(URI.escape("http://api.tvmaze.com/episodes/167570")).request_uri).once
+      allow(@resp).to receive(:code).and_return("200")
+      allow(@resp).to receive(:body).and_return(
+        File.open("spec/data/shield_show_info_main.json", "r").read,
+        File.open("spec/data/shield_show_info_previous.json", "r").read,
+        File.open("spec/data/shield_show_info_next.json", "r").read
+      )
+      expect(@resp).to receive(:body).exactly(3).times
+      
+      show = ShowTest.new
+      show.tvrage_id = 31
+      @tvinfo.generate_show(show)
+      check_show_shield(show)
+    end
+
+    it "should parse the episodes json and get normal next episode for Shield" do
+      expect(@http).to receive(:get).with(URI.parse(URI.escape(TVillion::TvInfo::EPISODE_URL % "31")).request_uri).once
+      allow(@resp).to receive(:code).and_return("200")
+      allow(@resp).to receive(:body).and_return(File.open("spec/data/shield_show_episodes.json", "r").read)
       expect(@resp).to receive(:body).once
       
       show = ShowTest.new
-      show.tvrage_id = 3628
-      @tvinfo.get_show_info(@http, show.tvrage_id, show, current_date=DateTime.parse("2012-08-27 13:41"))
-      check_show_futurama(show)
-    end
-    
-    it "ask for futurama and get full show info" do
-      net_http = double("net_http").as_null_object
-      allow(Net::HTTP).to receive(:new).and_return(net_http)
-      allow(net_http).to receive(:start).and_yield(@http)
-      
-      expect(@http).to receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL + "3628")).request_uri).once
-      allow(@resp).to receive(:body).and_return(File.open("spec/data/futurama_show_info.xml", "r").read)
-      expect(@resp).to receive(:body).once
-      
-      show = ShowTest.new
-      show.tvrage_id = 3628
-      show.name = "Futurama"
-      @tvinfo.generate_show(show, current_date=DateTime.parse("2012-08-27 13:41"))
-      check_show_futurama(show)
-    end
-    
-    it "should parse the info xml and get detail info about True Blood" do
-      expect(@http).to receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL + "12662")).request_uri).once
-      allow(@resp).to receive(:body).and_return(File.open("spec/data/trueblood_show_info_farseason.xml", "r").read)
-      expect(@resp).to receive(:body).once
-      
-      show = ShowTest.new
-      show.tvrage_id = 12662
-      @tvinfo.get_show_info(@http, show.tvrage_id, show, current_date=DateTime.parse("2012-08-27 13:41"))
-      check_show_trueblood(show)
-    end
-    
-    it "should parse the info xml and get detail info about Futurama with two episodes the same day" do
-      expect(@http).to receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL + "3628")).request_uri).once
-      allow(@resp).to receive(:body).and_return(File.open("spec/data/futurama_show_info_twosameday.xml", "r").read)
-      expect(@resp).to receive(:body).once
-      
-      show = ShowTest.new
-      show.tvrage_id = 3628
-      @tvinfo.get_show_info(@http, show.tvrage_id, show, current_date=DateTime.parse("2012-09-01 13:41"))
-      check_show_futurama_twosameday(show)
-    end
-    
-    it "should parse the info xml and get normal next episode for Futurama" do
-      expect(@http).to receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL + "3628")).request_uri).once
-      allow(@resp).to receive(:body).and_return(File.open("spec/data/futurama_show_info.xml", "r").read)
-      expect(@resp).to receive(:body).once
-      
-      show = ShowTest.new
-      show.name = "Futurama"
-      show.tvrage_id = 3628
-      show.season = 6
+      show.name = "Marvel's Agents of S.H.I.E.L.D"
+      show.tvrage_id = 31
+      show.season = 2
       show.episode = 17
-      @tvinfo.find_next_episode(@http, show.tvrage_id, show)
+      @tvinfo.get_next_episode(show)
       
-      expect(show.name).to eq("Futurama")
-      expect(show.tvrage_id).to eq(3628)
-      expect(show.season).to eq(6)
+      expect(show.name).to eq("Marvel's Agents of S.H.I.E.L.D")
+      expect(show.tvrage_id).to eq(31)
+      expect(show.season).to eq(2)
       expect(show.episode).to eq(18)
     end
     
-    it "should parse the info xml and get next season episode for Futurama" do
-      expect(@http).to receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL + "3628")).request_uri).once
-      allow(@resp).to receive(:body).and_return(File.open("spec/data/futurama_show_info.xml", "r").read)
+    it "should parse the episodes json and get next season episode for Shield" do
+      expect(@http).to receive(:get).with(URI.parse(URI.escape(TVillion::TvInfo::EPISODE_URL % "31")).request_uri).once
+      allow(@resp).to receive(:code).and_return("200")
+      allow(@resp).to receive(:body).and_return(File.open("spec/data/shield_show_episodes.json", "r").read)
       expect(@resp).to receive(:body).once
       
       show = ShowTest.new
-      show.name = "Futurama"
-      show.tvrage_id = 3628
-      show.season = 6
-      show.episode = 26
-      @tvinfo.find_next_episode(@http, show.tvrage_id, show)
+      show.name = "Marvel's Agents of S.H.I.E.L.D"
+      show.tvrage_id = 31
+      show.season = 2
+      show.episode = 22
+      @tvinfo.get_next_episode(show)
       
-      expect(show.name).to eq("Futurama")
-      expect(show.tvrage_id).to eq(3628)
-      expect(show.season).to eq(7)
+      expect(show.name).to eq("Marvel's Agents of S.H.I.E.L.D")
+      expect(show.tvrage_id).to eq(31)
+      expect(show.season).to eq(3)
       expect(show.episode).to eq(1)
     end
     
-    it "should parse the info xml and get next unaired season episode for True Blood" do
-      expect(@http).to receive(:request_get).with(URI.parse(URI.escape(TVillion::TvInfo::INFO_URL + "12662")).request_uri).once
-      allow(@resp).to receive(:body).and_return(File.open("spec/data/trueblood_show_info_farseason.xml", "r").read)
+    it "should parse the episodes json and no new episode for Shield" do
+      expect(@http).to receive(:get).with(URI.parse(URI.escape(TVillion::TvInfo::EPISODE_URL % "31")).request_uri).once
+      allow(@resp).to receive(:code).and_return("200")
+      allow(@resp).to receive(:body).and_return(File.open("spec/data/shield_show_episodes.json", "r").read)
       expect(@resp).to receive(:body).once
       
       show = ShowTest.new
-      show.name = "True Blood"
-      show.tvrage_id = 12662
-      show.season = 5
-      show.episode = 12
-      @tvinfo.find_next_episode(@http, show.tvrage_id, show)
+      show.name = "Marvel's Agents of S.H.I.E.L.D"
+      show.tvrage_id = 31
+      show.season = 3
+      show.episode = 3
+      @tvinfo.get_next_episode(show)
       
-      expect(show.name).to eq("True Blood")
-      expect(show.tvrage_id).to eq(12662)
-      expect(show.season).to eq(6)
-      expect(show.episode).to eq(1)
+      expect(show.name).to eq("Marvel's Agents of S.H.I.E.L.D")
+      expect(show.tvrage_id).to eq(31)
+      expect(show.season).to eq(nil)
+      expect(show.episode).to eq(nil)
     end
-    
-    def check_show_futurama(show)
-      expect(show.name).to eq("Futurama")
-      expect(show.tvrage_id).to eq(3628)
-      expect(show.last_show_date).to eq(DateTime.parse("2012-08-23 03:00 UTC"))
-      expect(show.last_season).to eq(7)
-      expect(show.last_episode).to eq(11)
-      expect(show.next_show_date).to eq(DateTime.parse("2012-08-30 03:00 UTC"))
-      expect(show.next_season).to eq(7)
-      expect(show.next_episode).to eq(12)
-    end
-    
-    def check_show_futurama_twosameday(show)
-      expect(show.name).to eq("Futurama")
-      expect(show.tvrage_id).to eq(3628)
-      expect(show.last_show_date).to eq(DateTime.parse("2012-08-30 03:00 UTC"))
-      expect(show.last_season).to eq(7)
-      expect(show.last_episode).to eq(13)
-      expect(show.next_show_date).to be_nil
-      expect(show.next_season).to be_nil
-      expect(show.next_episode).to be_nil
-    end
-    
-    def check_show_trueblood(show)
-      expect(show.name).to eq("True Blood")
-      expect(show.tvrage_id).to eq(12662)
-      expect(show.last_show_date).to eq(DateTime.parse("2012-08-27 02:00 UTC"))
-      expect(show.last_season).to eq(5)
-      expect(show.last_episode).to eq(12)
-      expect(show.next_show_date).to be_nil
-      expect(show.next_season).to be_nil
-      expect(show.next_episode).to be_nil
+
+    def check_show_shield(show)
+      expect(show.name).to eq("Marvel's Agents of S.H.I.E.L.D")
+      expect(show.tvrage_id).to eq(31)
+      expect(show.last_show_date).to eq(DateTime.parse("2015-05-12T22:00:00-04:00"))
+      expect(show.last_season).to eq(2)
+      expect(show.last_episode).to eq(22)
+      expect(show.next_show_date).to eq(DateTime.parse("2015-09-29T21:00:00-04:00"))
+      expect(show.next_season).to eq(3)
+      expect(show.next_episode).to eq(1)
     end
   end
 end
