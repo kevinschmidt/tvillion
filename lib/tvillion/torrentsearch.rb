@@ -34,11 +34,13 @@ module TVillion
       return nil
     end
 
-    KICKASS_URL = "http://kat.cr/usearch/%s/?rss=1&field=seeders&sorder=desc"
+    KICKASS_URL = "https://kat.cr/usearch/%s/?rss=1&field=seeders&sorder=desc"
 
     def search_kickass(search_string)
       uri = URI.parse(URI.escape(KICKASS_URL % search_string))
-      resp = Net::HTTP.new(uri.host, uri.port).get(uri.request_uri)
+      net_http = Net::HTTP.new(uri.host, uri.port)
+      net_http.use_ssl = true
+      resp = net_http.get(uri.request_uri)
       data = resp.body
 
       begin
